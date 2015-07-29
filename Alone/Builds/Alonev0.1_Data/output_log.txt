@@ -1,0 +1,75 @@
+Initialize engine version: 4.6.2f1 (bd99309c2ad7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 660M (ID=0xfd4)
+    Vendor:   NVIDIA
+    VRAM:     1990 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Owner\Documents\Alone\Builds\Alonev0.1_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Owner\Documents\Alone\Builds\Alonev0.1_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Owner\Documents\Alone\Builds\Alonev0.1_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Owner\Documents\Alone\Builds\Alonev0.1_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Owner\Documents\Alone\Builds\Alonev0.1_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Owner\Documents\Alone\Builds\Alonev0.1_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.116 seconds
+desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: C:\Users\Owner\Documents\Alone\Builds\Alonev0.1_Data\Managed\System.Core.dll (this message is harmless)
+You clicked on door
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Platform assembly: C:\Users\Owner\Documents\Alone\Builds\Alonev0.1_Data\Managed\System.dll (this message is harmless)
+UnloadTime: 3.989604 ms
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 30 unused Assets to reduce memory usage. Loaded Objects now: 148.
+Total: 1.298038 ms (FindLiveObjects: 0.015171 ms CreateObjectMapping: 0.016063 ms MarkObjects: 0.131633 ms  DeleteObjects: 0.065147 ms)
+
+UnloadTime: 0.482358 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 345.
+Total: 1.379249 ms (FindLiveObjects: 0.033466 ms CreateObjectMapping: 0.019187 ms MarkObjects: 0.237832 ms  DeleteObjects: 0.039713 ms)
+
+UnloadTime: 0.622023 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 35 unused Assets to reduce memory usage. Loaded Objects now: 271.
+Total: 1.371663 ms (FindLiveObjects: 0.031235 ms CreateObjectMapping: 0.019633 ms MarkObjects: 0.263266 ms  DeleteObjects: 0.075856 ms)
+
+Level '' (-1) couldn't be loaded because it has not been added to the build settings.
+To add a level to the build settings use the menu File->Build Settings...
+ 
+(Filename:  Line: 276)
+
+UnloadTime: 0.527425 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 350.
+Total: 1.335520 ms (FindLiveObjects: 0.036143 ms CreateObjectMapping: 0.020079 ms MarkObjects: 0.269959 ms  DeleteObjects: 0.034804 ms)
+
+You clicked on door
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.678246 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 29 unused Assets to reduce memory usage. Loaded Objects now: 271.
+Total: 1.403345 ms (FindLiveObjects: 0.026772 ms CreateObjectMapping: 0.018741 ms MarkObjects: 0.287362 ms  DeleteObjects: 0.063808 ms)
+
+UnloadTime: 0.531887 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 454.
+Total: 1.424317 ms (FindLiveObjects: 0.039713 ms CreateObjectMapping: 0.021418 ms MarkObjects: 0.291824 ms  DeleteObjects: 0.035697 ms)
+
+UnloadTime: 0.593911 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 35 unused Assets to reduce memory usage. Loaded Objects now: 271.
+Total: 1.350691 ms (FindLiveObjects: 0.027219 ms CreateObjectMapping: 0.019633 ms MarkObjects: 0.263712 ms  DeleteObjects: 0.077195 ms)
+
