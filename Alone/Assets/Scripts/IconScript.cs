@@ -34,6 +34,8 @@ public class IconScript : MonoBehaviour {
 
     GameObject[] inventoryArray;
 
+    public GameObject textBackground;
+
 	// Use this for initialization
 	void Start () {
 
@@ -43,6 +45,9 @@ public class IconScript : MonoBehaviour {
         // initial shown text is blank (aka no text shown)
         displayText.text = "";
         shadowText.text = "";
+
+        // initially set the textbackground to be invisible
+        textBackground.renderer.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -53,15 +58,19 @@ public class IconScript : MonoBehaviour {
 
         if (clickedTime != 0.0f)
         {
-           
+            // set the text to be "blank"
             if (Mathf.Abs(currentTime - clickedTime) > timeToShow)
             {
                 clickedTime = 0.0f;
                 displayText.text = "";
+                textBackground.renderer.enabled = false;
 
             }
+
+            // display the text background and the text itself
             else
             {
+                textBackground.renderer.enabled = true;
                 displayText.text = "That's the " + objectText + ".";
             }
 
