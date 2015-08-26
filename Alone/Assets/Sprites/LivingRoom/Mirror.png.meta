@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 39a270146940ec848b00abb6b79587ca
+guid: fcccfdc3d35c7f64884b657ff8c9b2b9
 TextureImporter:
   fileIDToRecycleName:
-    21300000: FrontDoor_0
+    21300000: Mirror_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -44,13 +44,13 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: FrontDoor_0
+    - name: Mirror_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 3
-        width: 148
-        height: 717
+        x: 337
+        y: 244
+        width: 230
+        height: 467
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 39a270146940ec848b00abb6b79587ca
+guid: 1e1a29de00694c749b1b86768f06c78c
 TextureImporter:
   fileIDToRecycleName:
-    21300000: FrontDoor_0
+    21300000: Cactus_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -44,13 +44,13 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: FrontDoor_0
+    - name: Cactus_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 3
-        width: 148
-        height: 717
+        x: 239
+        y: 389
+        width: 117
+        height: 164
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

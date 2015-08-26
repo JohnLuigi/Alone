@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 39a270146940ec848b00abb6b79587ca
+guid: 0f4fc7183606c23448819a0f7b7986d5
 TextureImporter:
   fileIDToRecycleName:
-    21300000: FrontDoor_0
+    21300000: EnvelopeFront_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -44,13 +44,13 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: FrontDoor_0
+    - name: EnvelopeFront_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 3
-        width: 148
-        height: 717
+        x: 383
+        y: 387
+        width: 91
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

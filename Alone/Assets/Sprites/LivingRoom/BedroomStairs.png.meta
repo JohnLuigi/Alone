@@ -1,7 +1,8 @@
 fileFormatVersion: 2
-guid: e14ddf21dcaa8ac4da5b95fa67e62e91
+guid: 400dcf04e87a92848a6d72ed94134587
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: BedroomStairs_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -25,13 +26,13 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -42,6 +43,16 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: BedroomStairs_0
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 199
+        width: 313
+        height: 521
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
