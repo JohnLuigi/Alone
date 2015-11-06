@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\IntroLoader.cs" />
      <Compile Include="Assets\Scripts\InventoryManager.cs" />
      <Compile Include="Assets\Scripts\LoadLevelScript.cs" />
+     <Compile Include="Assets\Scripts\MapScript.cs" />
      <Compile Include="Assets\Scripts\ObjectProperties.cs" />
      <Compile Include="Assets\Scripts\OnClickText.cs" />
      <Compile Include="Assets\Scripts\SwapScript.cs" />
