@@ -20,11 +20,19 @@ public class MapScript : MonoBehaviour {
 
     // This string will be changed upon the loading of the map screen
     // Right before the map is loaded, a global string containing the last visited area will be set
-    public string lastArea = "Home";
+    public string lastArea = "HouseFrontMap";
 
 	// Use this for initialization
 	void Start () {
 
+        if(GameObject.Find("InventoryHandler"))
+        {
+            //Debug.Log("it was found");
+            //GameObject TempObject = ;
+            lastArea = GameObject.Find("InventoryHandler").GetComponent<InventoryManager>().lastLevel;
+            Debug.Log(lastArea);
+        }
+        
         // create GameObjects by searching for their names
         //GameObject DockObject = GameObject.Find("Dock");
         //GameObject HomeObject = GameObject.Find("Home");
@@ -85,7 +93,7 @@ public class MapScript : MonoBehaviour {
             //Debug.Log("You hit: "+ hit.collider.gameObject.name);
 
             // HOME TO OTHER AREAS
-            if(string.Equals(lastArea, "Home"))
+            if(string.Equals(lastArea, "HouseFrontMap"))
             {
                 string destination = hit.collider.gameObject.name;
 
@@ -131,7 +139,7 @@ public class MapScript : MonoBehaviour {
             }
 
             // PARK TO OTHER AREAS
-            if (string.Equals(lastArea, "Park"))
+            if (string.Equals(lastArea, "ParkScene"))
             {
                 string destination = hit.collider.gameObject.name;
 
@@ -177,7 +185,7 @@ public class MapScript : MonoBehaviour {
             }
 
             // DOCK TO OTHER AREAS
-            if (string.Equals(lastArea, "Dock"))
+            if (string.Equals(lastArea, "DockScene"))
             {
                 string destination = hit.collider.gameObject.name;
 
@@ -223,7 +231,7 @@ public class MapScript : MonoBehaviour {
             }
 
             // MARKET TO OTHER AREAS
-            if (string.Equals(lastArea, "Market"))
+            if (string.Equals(lastArea, "MarketScene"))
             {
                 string destination = hit.collider.gameObject.name;
 
@@ -269,7 +277,7 @@ public class MapScript : MonoBehaviour {
             }
 
             // TOWNHALL TO OTHER AREAS
-            if (string.Equals(lastArea, "TownHall"))
+            if (string.Equals(lastArea, "LibraryScene"))
             {
                 string destination = hit.collider.gameObject.name;
 
@@ -311,7 +319,7 @@ public class MapScript : MonoBehaviour {
             }
 
             // STATION TO OTHER AREAS
-            if (string.Equals(lastArea, "Station"))
+            if (string.Equals(lastArea, "StationScene"))
             {
                 string destination = hit.collider.gameObject.name;
 

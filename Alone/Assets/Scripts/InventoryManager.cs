@@ -48,6 +48,11 @@ public class InventoryManager : MonoBehaviour {
 
     //[HideInInspector]
 
+
+    // String used to record the last saved level
+    [HideInInspector]
+    public string lastLevel;
+
     // set the object to not be destroyed on new scene loading
     void Awake()
     {
@@ -65,6 +70,53 @@ public class InventoryManager : MonoBehaviour {
         //DontDestroyOnLoad(transform.gameObject);
     }
 
+    void OnLevelWasLoaded(int level)
+    {
+        switch(level)
+        {
+            case 0:
+                lastLevel = "BedroomScene";
+                break;
+            case 1:
+                lastLevel = "KitchenScene";
+                break;
+            case 2:
+                lastLevel = "LivingRoomScene";
+                break;
+            case 3:
+                lastLevel = "BasementScene";
+                break;
+            case 4:
+                lastLevel = "HouseFront";
+                break;
+            case 5:
+                lastLevel = "HouseFrontMap";
+                break;
+            case 6:
+                // Do not change last level if map is loaded
+                break;
+            case 7:
+                lastLevel = "ParkScene";
+                break;
+            case 8:
+                lastLevel = "LibraryScene";
+                break;
+            case 9:
+                lastLevel = "IntroScene";
+                break;
+            case 10:
+                lastLevel = "DockScene";
+                break;
+            case 11:
+                lastLevel = "MarketScene";
+                break;
+            default:
+                break;
+        }
+        //set the lastLevel to the just loaded level (used for the map path highlighting
+        //lastLevel = Application.loadedLevelName;
+        //Debug.Log(Application.loadedLevelName);
+    }
 
 
 	// Use this for initialization
