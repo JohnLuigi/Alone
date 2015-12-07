@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class InteractScript : MonoBehaviour {
-
+    [HideInInspector]
     public GameObject iconHandlerObject;
 
     ObjectProperties objectPropertiesScript;

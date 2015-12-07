@@ -71,7 +71,9 @@ public class IconScript : MonoBehaviour {
             else
             {
                 textBackground.renderer.enabled = true;
-                displayText.text = "That's the " + objectText + ".";
+                // originally had 
+                // displayText.text = "That's the " + objectText + ".";
+                displayText.text =  objectText;
             }
 
         }

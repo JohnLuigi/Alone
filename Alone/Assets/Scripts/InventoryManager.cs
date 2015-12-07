@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 
 
 public class InventoryManager : MonoBehaviour {
@@ -27,6 +28,9 @@ public class InventoryManager : MonoBehaviour {
     // object that is the background of the grid,
     // also has the inventory slots as children of the background
     public GameObject gridBackground;
+
+    // the text object(s) used to track in game stuff like days left, wood, etc.
+    public Text StatusText;
 
     // used to track the original inventory, so when a new scene
     // is created and a new inventory is made, only the original survives
@@ -122,6 +126,8 @@ public class InventoryManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        
+
         // hid the open icon, the inventory is closed by default
         openBackpack.renderer.enabled = false;
 	    
@@ -129,6 +135,11 @@ public class InventoryManager : MonoBehaviour {
         // name containing cell and add it to the list
 
         cells = GameObject.FindGameObjectsWithTag("Cell").OrderBy(go => go.name).ToArray();
+
+        // move the status text upwards offscreen
+        StatusText.transform.position = new Vector3(Screen.width / 4.0f, Screen.height, 0.0f);
+        //StatusText.transform.position = new Vector3(4.0f, 3.0f, 0.0f);
+
 
         // check the scene for objects that are in the inventory
         // if there is an object in the scene that is also int he inventory, delete the
@@ -349,10 +360,14 @@ public class InventoryManager : MonoBehaviour {
         if(up == false && theGrid.transform.position.y >= 2.0f)
         {
             theGrid.transform.position -= new Vector3(0.0f, 0.20f, 0.0f);
+            StatusText.transform.position = new Vector3(theGrid.transform.position.x * Screen.width, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
+            // -new Vector3(0.0f, 2.0f, 0.0f);
         }
         else if(up == true && theGrid.transform.position.y <= 5.0f)
         {
             theGrid.transform.position += new Vector3(0.0f, 0.20f, 0.0f);
+            StatusText.transform.position = new Vector3(theGrid.transform.position.x* Screen.width, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
+            // -new Vector3(0.0f, 2.0f, 0.0f);
         }
     }
 
