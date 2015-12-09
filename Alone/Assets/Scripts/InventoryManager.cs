@@ -56,6 +56,20 @@ public class InventoryManager : MonoBehaviour {
     // String used to record the last saved level
     [HideInInspector]
     public string lastLevel;
+    public int daysLeft = 4;
+    public int hoursLeft = 24;
+
+
+
+
+
+
+
+
+
+
+
+
 
     // set the object to not be destroyed on new scene loading
     void Awake()
@@ -123,6 +137,14 @@ public class InventoryManager : MonoBehaviour {
     }
 
 
+
+
+
+
+
+
+
+
 	// Use this for initialization
 	void Start () {
 
@@ -138,6 +160,7 @@ public class InventoryManager : MonoBehaviour {
 
         // move the status text upwards offscreen
         StatusText.transform.position = new Vector3(Screen.width / 4.0f, Screen.height, 0.0f);
+        //StatusText.transform.position = new Vector3(StatusText.transform.position.x, Screen.height, 0.0f);
         //StatusText.transform.position = new Vector3(4.0f, 3.0f, 0.0f);
 
 
@@ -272,6 +295,9 @@ public class InventoryManager : MonoBehaviour {
         }
         
 
+        // Handling the updating/change of the status text
+        StatusText.text = daysLeft + " days remaining.";
+
 
         ////handle the moving of the grid here
         
@@ -360,13 +386,15 @@ public class InventoryManager : MonoBehaviour {
         if(up == false && theGrid.transform.position.y >= 2.0f)
         {
             theGrid.transform.position -= new Vector3(0.0f, 0.20f, 0.0f);
+            //StatusText.transform.position = new Vector3(StatusText.transform.position.x, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
             StatusText.transform.position = new Vector3(theGrid.transform.position.x * Screen.width, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
             // -new Vector3(0.0f, 2.0f, 0.0f);
         }
         else if(up == true && theGrid.transform.position.y <= 5.0f)
         {
             theGrid.transform.position += new Vector3(0.0f, 0.20f, 0.0f);
-            StatusText.transform.position = new Vector3(theGrid.transform.position.x* Screen.width, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
+            //StatusText.transform.position = new Vector3(StatusText.transform.position.x, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
+            StatusText.transform.position = new Vector3(theGrid.transform.position.x * Screen.width, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
             // -new Vector3(0.0f, 2.0f, 0.0f);
         }
     }
