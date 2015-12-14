@@ -5,6 +5,7 @@ using System.Collections;
 public class LoadLevelScript : MonoBehaviour {
 
     public string levelToLoad = "";
+    public bool trueLoad = true;
 	// Use this for initialization
 	void Start () {
 	
@@ -12,7 +13,7 @@ public class LoadLevelScript : MonoBehaviour {
 
     void OnMouseOver()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && (trueLoad == true))
         {
             Application.LoadLevel(levelToLoad);
             //EditorApplication.OpenScene("Assets/Scenes/" + levelToLoad + ".unity");

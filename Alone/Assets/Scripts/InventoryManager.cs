@@ -387,15 +387,36 @@ public class InventoryManager : MonoBehaviour {
         {
             theGrid.transform.position -= new Vector3(0.0f, 0.20f, 0.0f);
             //StatusText.transform.position = new Vector3(StatusText.transform.position.x, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
+            //THIS WORKS
             StatusText.transform.position = new Vector3(theGrid.transform.position.x * Screen.width, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
+            
+            //StatusText.transform.position = theGrid.transform.position + new Vector3(
+            //    -theGrid.GetComponent<BoxCollider2D>().size.x /2.0f,
+            //    -theGrid.GetComponent<BoxCollider2D>().size.y / 2.0f + 1.0f,
+            //    0.0f);
             // -new Vector3(0.0f, 2.0f, 0.0f);
+
+            //Vector2 pos = theGrid.transform.position;
+            //Vector2 viewportPoint = Camera.main.WorldToViewportPoint(pos);
+            //StatusText.transform.position = viewportPoint;
         }
         else if(up == true && theGrid.transform.position.y <= 5.0f)
         {
             theGrid.transform.position += new Vector3(0.0f, 0.20f, 0.0f);
             //StatusText.transform.position = new Vector3(StatusText.transform.position.x, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
+            //THIS WORKS
             StatusText.transform.position = new Vector3(theGrid.transform.position.x * Screen.width, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
+            
+            //StatusText.transform.position = theGrid.transform.position + new Vector3(
+            //    -theGrid.GetComponent<BoxCollider2D>().size.x / 2.0f,
+            //    -theGrid.GetComponent<BoxCollider2D>().size.y / 2.0f + 1.0f,
+            //    0.0f);
             // -new Vector3(0.0f, 2.0f, 0.0f);
+
+            //Vector2 pos = theGrid.transform.position;
+            //Vector2 viewportPoint = Camera.main.WorldToViewportPoint(pos);
+            //StatusText.transform.position = viewportPoint;
+
         }
     }
 

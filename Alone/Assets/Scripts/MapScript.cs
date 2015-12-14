@@ -12,6 +12,13 @@ public class MapScript : MonoBehaviour {
     //private GameObject StationObject;
     //private GameObject MarketObject;
 
+    // icons used to traveling to each area
+    public GameObject AcceptIcon;
+    public GameObject CancelIcon;
+
+    public float iconDistance = 3.0f;
+    public float iconSpeed = 0.2f;
+
     // to be used for holding the paths
     public GameObject[] Paths;
 
@@ -21,6 +28,9 @@ public class MapScript : MonoBehaviour {
     // This string will be changed upon the loading of the map screen
     // Right before the map is loaded, a global string containing the last visited area will be set
     public string lastArea = "HouseFrontMap";
+
+    private string LevelToLoad;
+
 
 	// Use this for initialization
 	void Start () {
@@ -88,7 +98,7 @@ public class MapScript : MonoBehaviour {
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
         // What to do when one of the area's hitboxes is found
-        if(hit)    
+        if(hit && hit.collider.gameObject.name != "MapBackground")    
         {
             //Debug.Log("You hit: "+ hit.collider.gameObject.name);
 
@@ -364,6 +374,23 @@ public class MapScript : MonoBehaviour {
                 }
             }
 
+            if (Input.GetMouseButtonDown(0))
+            {
+                // get the scene to load string to be used in travelcheck
+                if(hit.collider.gameObject.name != "AcceptIcon" && hit.collider.gameObject.name != "CancelIcon" )
+                {
+                    LevelToLoad = hit.collider.gameObject.name;
+                    GameObject findLevel = GameObject.Find(LevelToLoad);
+                    LevelToLoad = findLevel.GetComponent<LoadLevelScript>().levelToLoad;
+                    IconsAppear(hit.collider.gameObject);
+                }                   
+
+                //.GetComponent<LoadLevelScript>().levelToLoad;
+                
+                
+            }
+
+            
         }
         else
         {
@@ -374,6 +401,128 @@ public class MapScript : MonoBehaviour {
             }
         }
 
+        CheckIcons();
 	}
+
+
+
+    void IconsAppear(GameObject spawnPoint)
+    {
+        // make the two icons visible
+        AcceptIcon.renderer.enabled = true;
+        CancelIcon.renderer.enabled = true;
+        switch(spawnPoint.name)
+        {
+            case "Dock":
+                // set their starting positions at the destination clicked on, but move these icons a specific way for certain locations
+            AcceptIcon.transform.position = spawnPoint.transform.position + new Vector3(
+                //boxcollider of spawn + radius of icon
+                (spawnPoint.GetComponent<BoxCollider2D>().size.x / 2.0f) + AcceptIcon.GetComponent<CircleCollider2D>().radius,
+                0.0f,
+                -4.0f);
+            CancelIcon.transform.position = spawnPoint.transform.position + new Vector3(
+                0.0f,
+                -(spawnPoint.GetComponent<BoxCollider2D>().size.y / 2.0f) - CancelIcon.GetComponent<CircleCollider2D>().radius,
+                -4.0f);
+                break;
+
+            case "Home":
+                // set their starting positions at the destination clicked on, but move these icons a specific way for certain locations
+                AcceptIcon.transform.position = spawnPoint.transform.position + new Vector3(
+                    //boxcollider of spawn + radius of icon
+                    0.0f,
+                    -(spawnPoint.GetComponent<BoxCollider2D>().size.y / 2.0f) - AcceptIcon.GetComponent<CircleCollider2D>().radius,
+                    -4.0f);
+                CancelIcon.transform.position = spawnPoint.transform.position + new Vector3(
+                    -(spawnPoint.GetComponent<BoxCollider2D>().size.x / 2.0f) - CancelIcon.GetComponent<CircleCollider2D>().radius,
+                    0.0f,
+                    -4.0f);
+                break;
+
+            case "Station":
+                // set their starting positions at the destination clicked on, but move these icons a specific way for certain locations
+                AcceptIcon.transform.position = spawnPoint.transform.position + new Vector3(
+                    //boxcollider of spawn + radius of icon
+                    0.0f,
+                    +(spawnPoint.GetComponent<BoxCollider2D>().size.y / 2.0f) + AcceptIcon.GetComponent<CircleCollider2D>().radius,
+                    -4.0f);
+                CancelIcon.transform.position = spawnPoint.transform.position + new Vector3(
+                    -(spawnPoint.GetComponent<BoxCollider2D>().size.x / 2.0f) - CancelIcon.GetComponent<CircleCollider2D>().radius,
+                    0.0f,
+                    -4.0f);
+                break;
+
+            default:
+                // set their starting positions at the destination clicked on
+                AcceptIcon.transform.position = spawnPoint.transform.position + new Vector3(
+                    //boxcollider of spawn + radius of icon
+                    (spawnPoint.GetComponent<BoxCollider2D>().size.x / 2.0f) + CancelIcon.GetComponent<CircleCollider2D>().radius,
+                    0.0f,
+                    -4.0f);
+                CancelIcon.transform.position = spawnPoint.transform.position + new Vector3(
+
+                    -(spawnPoint.GetComponent<BoxCollider2D>().size.x / 2.0f) - CancelIcon.GetComponent<CircleCollider2D>().radius,
+                    0.0f,
+                    -4.0f);
+                break;
+        }
+        
+
+        Debug.Log(spawnPoint.transform.position);
+        Debug.Log(spawnPoint.GetComponent<BoxCollider2D>().size);
+
+        //// move the icons to their end positions, a short distance from the starting points
+        //for (float i = 0; i < iconDistance; i += iconSpeed)
+        //{
+        //    AcceptIcon.transform.position -= new Vector3(iconSpeed, AcceptIcon.transform.position.y, AcceptIcon.transform.position.z);
+        //    AcceptIcon.transform.position += new Vector3(iconSpeed, AcceptIcon.transform.position.y, AcceptIcon.transform.position.z);
+        //}
+
+    }
+
+    void CheckIcons()
+    {
+        // if the accept is clicked, load the next level
+        
+        // 2D HITBOX DETECTION IS WORKING WOO HOO
+        Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit2 = Physics2D.Raycast(ray2.origin, ray2.direction);
+        // if the cancel is clicked, make the icons disappear
+
+        if (hit2)
+        {
+            string status = hit2.collider.gameObject.name;
+            
+                if (string.Equals(status, "AcceptIcon"))
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        Debug.Log("clicked an icon");
+                        Application.LoadLevel(LevelToLoad);
+                    }
+
+                }
+                else if (string.Equals(status, "CancelIcon"))
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        Debug.Log("clicked an icon");
+                        AcceptIcon.renderer.enabled = false;
+                        CancelIcon.renderer.enabled = false;
+                        // TODO add the confirmation text disappearing here
+                    }
+                }
+            
+
+        }
+        
+    }
+       
+            
+        
+                    
+        
+            
+    
 
 }
