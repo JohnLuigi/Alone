@@ -128,6 +128,9 @@ public class InventoryManager : MonoBehaviour {
             case 11:
                 lastLevel = "MarketScene";
                 break;
+            case 12:
+                lastLevel = "StationScene";
+                break;
             default:
                 break;
         }
