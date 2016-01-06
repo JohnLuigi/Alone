@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 2f40f25eb6fc14a4aabf65b6e7a540e3
+guid: a23db3bc09d8d954e874c578150a0d12
 TextureImporter:
   fileIDToRecycleName:
-    21300000: SodaBottle_0
+    21300000: Plank2_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -44,13 +44,13 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: SodaBottle_0
+    - name: Plank2_0
       rect:
         serializedVersion: 2
-        x: 1089
-        y: 32
-        width: 160
-        height: 67
+        x: 444
+        y: 467
+        width: 228
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
