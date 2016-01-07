@@ -86,6 +86,10 @@ public class InventoryManager : MonoBehaviour {
         DontDestroyOnLoad(this.gameObject);
 
         //DontDestroyOnLoad(transform.gameObject);
+
+        // find all the objects in the scene with
+        // name containing cell and add it to the list
+        cells = GameObject.FindGameObjectsWithTag("Cell").OrderBy(go => go.name).ToArray();
     }
 
     void OnLevelWasLoaded(int level)
@@ -156,10 +160,7 @@ public class InventoryManager : MonoBehaviour {
         // hid the open icon, the inventory is closed by default
         openBackpack.renderer.enabled = false;
 	    
-        // find all the objects in the scene with
-        // name containing cell and add it to the list
-
-        cells = GameObject.FindGameObjectsWithTag("Cell").OrderBy(go => go.name).ToArray();
+        
 
         // move the status text upwards offscreen
         StatusText.transform.position = new Vector3(Screen.width / 4.0f, Screen.height, 0.0f);

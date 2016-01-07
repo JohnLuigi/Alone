@@ -23,10 +23,11 @@ public class IconHandler : MonoBehaviour {
     public Vector3 startPos = new Vector3(0.0f, 0.0f, -5.0f);
 
     public GameObject invManager;
-    InventoryManager invManagerScript;
+    [HideInInspector]
+    public InventoryManager invManagerScript;
 
     [HideInInspector]
-    public GameObject[] invArray;
+    public GameObject[] invArray;// = new GameObject[16];
 
     // set the object to not be destroyed on new scene loading
     void Awake()
@@ -43,20 +44,30 @@ public class IconHandler : MonoBehaviour {
         DontDestroyOnLoad(this.gameObject);
 
         //DontDestroyOnLoad(transform.gameObject);
+
+        // set the inventory manager script
+        invManagerScript = invManager.GetComponent<InventoryManager>();
+
+        // set the script's inventory cells
+        invArray = invManager.GetComponent<InventoryManager>().cells;
+
+        
     }
 
 	// Use this for initialization
 	void Start () {
 
-        invManagerScript = invManager.GetComponent<InventoryManager>();
+        
 
         lookIcon.renderer.enabled = false;
         useIcon.renderer.enabled = false;
         storeIcon.renderer.enabled = false;
 
-        invArray = invManagerScript.cells;
+        //Debug.Log(invManager.GetComponent<InventoryManager>().cells.Length);
 
-        //for(int i = 0; i < invArray.Length; i++)
+        //Debug.Log(invArray.Length);
+
+        //for (int i = 0; i < invArray.Length; i++)
         //{
         //    Debug.Log(invArray[i].name);
         //}

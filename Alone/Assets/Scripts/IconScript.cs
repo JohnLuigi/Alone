@@ -36,11 +36,24 @@ public class IconScript : MonoBehaviour {
 
     public GameObject textBackground;
 
+    InventoryManager invManager;
+
+    void Awake()
+    {
+        //get the scripts necessary
+        iconHandlerScript = iconHandler.GetComponent<IconHandler>();
+
+        invManager = GameObject.Find("InventoryHandler").GetComponent<InventoryManager>();
+        //inventoryArray = iconHandlerScript.invArray;
+        inventoryArray = invManager.GetComponent<InventoryManager>().cells;
+
+        //Debug.Log(inventoryArray.Length);
+    }
+
 	// Use this for initialization
 	void Start () {
 
-        //get the scripts necessary
-        iconHandlerScript = iconHandler.GetComponent<IconHandler>();
+        
 
         // initial shown text is blank (aka no text shown)
         displayText.text = "";
@@ -135,18 +148,43 @@ public class IconScript : MonoBehaviour {
             //if icon is store
             else if (iconType == 2)
             {
+
                 if(objectPropertiesScript.storable == true)
                 {
-                    inventoryArray = iconHandlerScript.invArray;
+                    //
+                    // TODO
+                    //inventoryArray = iconHandler.getComponent<>invManagerScript.getComponent<InventoryManager>()
 
                     for (int i = 0; i < inventoryArray.Length; i++)
                     {
-
+                       
                         if (inventoryArray[i].transform.childCount == 0)
                         {
+                            //move the item to the inventory cell (in front of the cell too on hte z-axis
                             linkedObject.transform.position = new Vector3(inventoryArray[i].transform.position.x,
                                 inventoryArray[i].transform.position.y, inventoryArray[i].transform.position.z - 0.5f);
+
+                            // rotate the item to match the inventory cell
                             linkedObject.transform.rotation = inventoryArray[i].transform.rotation;
+
+                            // scale the item to match the inventory cell
+
+                            //float scale = 0.5f;
+                            //linkedObject.transform.localScale = new Vector3(scale, scale, scale);
+
+                            //Vector2 S = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size;
+
+                            Vector2 cellSize = inventoryArray[i].GetComponent<SpriteRenderer>().sprite.bounds.size;
+                            Vector2 linkedSize = linkedObject.GetComponent<SpriteRenderer>().sprite.bounds.size;
+
+                            float scale = Mathf.Min(cellSize.x, cellSize.y)/ Mathf.Max(linkedSize.x, linkedSize.y);
+                            linkedObject.transform.localScale = new Vector3(scale, scale, scale);
+
+
+                            //Vector2 sizeModifier = new Vector2(cellSize.x / linkedSize.x, cellSize.y / linkedSize.y);
+
+                            //linkedObject.GetComponent<PolygonCollider2D>().size = new Vector2(cellSize.x, cellSize.y);
+                            //linkedObject.transform.localScale = inventoryArray[i].renderer.bounds.size;
 
                             linkedObject.transform.parent = inventoryArray[i].transform;
                             objectPropertiesScript.stored = true;
