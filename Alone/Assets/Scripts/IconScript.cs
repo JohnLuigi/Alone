@@ -34,9 +34,11 @@ public class IconScript : MonoBehaviour {
 
     GameObject[] inventoryArray;
 
-    public GameObject textBackground;
+    public Image textBackground;
 
     InventoryManager invManager;
+
+    //Camera camera;
 
     void Awake()
     {
@@ -60,7 +62,14 @@ public class IconScript : MonoBehaviour {
         shadowText.text = "";
 
         // initially set the textbackground to be invisible
-        textBackground.renderer.enabled = false;
+        //textBackground.renderer.enabled = false;
+        textBackground.enabled = false;
+
+        // position the text background and tet object relative to the screen
+        // TODO RESUME HERE
+        //Transform tempTransform = GameObject.Find("NewText").GetComponent<Transform>();
+        //Vector3 screenPos = Camera.main.WorldToScreenPoint(tempTransform.position);
+        //Debug.Log("target is " + screenPos.x + " pixels from the left");
 	}
 	
 	// Update is called once per frame
@@ -76,14 +85,14 @@ public class IconScript : MonoBehaviour {
             {
                 clickedTime = 0.0f;
                 displayText.text = "";
-                textBackground.renderer.enabled = false;
+                textBackground.enabled = false;
 
             }
 
             // display the text background and the text itself
             else
             {
-                textBackground.renderer.enabled = true;
+                textBackground.enabled = true;
                 // originally had 
                 // displayText.text = "That's the " + objectText + ".";
                 displayText.text =  objectText;
