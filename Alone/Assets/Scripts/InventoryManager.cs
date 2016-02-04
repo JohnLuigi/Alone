@@ -30,7 +30,7 @@ public class InventoryManager : MonoBehaviour {
     public GameObject gridBackground;
 
     // the text object(s) used to track in game stuff like days left, wood, etc.
-    public Text StatusText;
+    //public Text StatusText;
 
     // used to track the original inventory, so when a new scene
     // is created and a new inventory is made, only the original survives
@@ -90,6 +90,13 @@ public class InventoryManager : MonoBehaviour {
         // find all the objects in the scene with
         // name containing cell and add it to the list
         cells = GameObject.FindGameObjectsWithTag("Cell").OrderBy(go => go.name).ToArray();
+
+        // initially disable the extra cells that will eventually be unlocked by the cart acquisition
+        for (int i = 4; i < cells.Length; i++)
+        {
+            cells[i].renderer.enabled = false;
+        }
+
     }
 
     void OnLevelWasLoaded(int level)
@@ -163,7 +170,7 @@ public class InventoryManager : MonoBehaviour {
         
 
         // move the status text upwards offscreen
-        StatusText.transform.position = new Vector3(Screen.width / 4.0f, Screen.height, 0.0f);
+        //StatusText.transform.position = new Vector3(Screen.width / 4.0f, Screen.height, 0.0f);
         //StatusText.transform.position = new Vector3(StatusText.transform.position.x, Screen.height, 0.0f);
         //StatusText.transform.position = new Vector3(4.0f, 3.0f, 0.0f);
 
@@ -300,7 +307,7 @@ public class InventoryManager : MonoBehaviour {
         
 
         // Handling the updating/change of the status text
-        StatusText.text = daysLeft + " days remaining.";
+        //StatusText.text = daysLeft + " days remaining.";
 
 
         ////handle the moving of the grid here
@@ -392,7 +399,7 @@ public class InventoryManager : MonoBehaviour {
             theGrid.transform.position -= new Vector3(0.0f, 0.20f, 0.0f);
             //StatusText.transform.position = new Vector3(StatusText.transform.position.x, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
             //THIS WORKS
-            StatusText.transform.position = new Vector3(theGrid.transform.position.x * Screen.width, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
+            //StatusText.transform.position = new Vector3(theGrid.transform.position.x * Screen.width, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
             
             //StatusText.transform.position = theGrid.transform.position + new Vector3(
             //    -theGrid.GetComponent<BoxCollider2D>().size.x /2.0f,
@@ -409,7 +416,7 @@ public class InventoryManager : MonoBehaviour {
             theGrid.transform.position += new Vector3(0.0f, 0.20f, 0.0f);
             //StatusText.transform.position = new Vector3(StatusText.transform.position.x, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
             //THIS WORKS
-            StatusText.transform.position = new Vector3(theGrid.transform.position.x * Screen.width, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
+            //StatusText.transform.position = new Vector3(theGrid.transform.position.x * Screen.width, theGrid.transform.position.y * Screen.height / 3.5f, 0.0f);
             
             //StatusText.transform.position = theGrid.transform.position + new Vector3(
             //    -theGrid.GetComponent<BoxCollider2D>().size.x / 2.0f,

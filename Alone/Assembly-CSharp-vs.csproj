@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\MapScript.cs" />
      <Compile Include="Assets\Scripts\ObjectProperties.cs" />
      <Compile Include="Assets\Scripts\OnClickText.cs" />
+     <Compile Include="Assets\Scripts\SpecialInteract.cs" />
      <Compile Include="Assets\Scripts\StatusTextScript.cs" />
      <Compile Include="Assets\Scripts\SwapScript.cs" />
  <Reference Include="UnityEngine.UI">

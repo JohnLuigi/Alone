@@ -18,7 +18,6 @@ public class MainManager : MonoBehaviour {
     public List<string> usedItems = new List<string>();
 
 
-
 	// Use this for initialization
 	void Start () {
 	

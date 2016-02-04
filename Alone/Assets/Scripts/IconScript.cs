@@ -166,8 +166,10 @@ public class IconScript : MonoBehaviour {
 
                     for (int i = 0; i < inventoryArray.Length; i++)
                     {
-                       
-                        if (inventoryArray[i].transform.childCount == 0)
+
+                        // checks if the cell has no objects attached (aka items stored in it) and that it is selectable (such as if the inventory is
+                        // expanded by the cart or not)
+                        if (inventoryArray[i].transform.childCount == 0 && inventoryArray[i].renderer.enabled == true)
                         {
                             //move the item to the inventory cell (in front of the cell too on hte z-axis
                             linkedObject.transform.position = new Vector3(inventoryArray[i].transform.position.x,
