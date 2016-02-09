@@ -152,6 +152,31 @@ public class IconScript : MonoBehaviour {
                     iconHandlerScript.beingUsed = false;
                     
                 }
+
+                // CART BLOCK
+                // check if the object being used is the cart, and if it is, hide the cart and make the
+                // extra inventory slots usable
+
+                if(linkedObject.name == "Cart")
+                {
+                    // find the object with the inventorymanager script, then get the inventory cells
+
+                    // TEMP disabling the reassigning of invManager and the array to see if this works
+                    //InventoryManager invManager = GameObject.Find("InventoryHandler").GetComponent<InventoryManager>();
+                    //GameObject[] inventoryArray = invManager.GetComponent<InventoryManager>().cells;
+
+                    //Debug.Log(inventoryArray.Length);
+                    if (inventoryArray[4].renderer.enabled == false)
+                    {
+                        for (int i = 4; i < inventoryArray.Length; i++)
+                        {
+                            inventoryArray[i].renderer.enabled = true;
+                        }
+                    }
+
+                    GameObject Cart = GameObject.Find("Cart");
+                    Destroy(Cart);
+                }
             }
 
             //if icon is store

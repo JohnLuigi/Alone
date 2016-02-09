@@ -5,7 +5,7 @@ public class SpecialInteract : MonoBehaviour {
 
     // This script is for objects that have unqiue interactions, like grabbing the cart or using the boat
 
-    private bool pressed = false;
+    //private bool pressed = false;
 	// Use this for initialization
 	void Start () {
 
