@@ -125,6 +125,8 @@ public class IconScript : MonoBehaviour {
 
                     objectText = objectPropertiesScript.description;
                 }
+
+                iconHandlerScript.beingUsed = false;
             }
 
             // if icon is use
@@ -176,7 +178,12 @@ public class IconScript : MonoBehaviour {
 
                     GameObject Cart = GameObject.Find("Cart");
                     Destroy(Cart);
+
+                    iconHandlerScript.cartGrabbed = true;
+
                 }
+
+                iconHandlerScript.beingUsed = false;
             }
 
             //if icon is store
@@ -229,6 +236,8 @@ public class IconScript : MonoBehaviour {
                         }
 
                     }
+
+                    iconHandlerScript.beingUsed = false;
                 }
 
                 iconHandlerScript.beingUsed = false;

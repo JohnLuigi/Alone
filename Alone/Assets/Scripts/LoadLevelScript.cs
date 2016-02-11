@@ -12,6 +12,8 @@ public class LoadLevelScript : MonoBehaviour {
     public int soundType = 0;
 
     public AudioSource audioSource;
+
+    //private float fadeAmount = 0.5f;
     //AudioClip sound;
 
     // the black image that will fade on scene change
@@ -19,8 +21,9 @@ public class LoadLevelScript : MonoBehaviour {
     //Image screenFader;
     Color faderColor;
 
-    public float fadeSpeed = 0.0f;          // Speed that the screen fades to and from black.
-    public float fadeTime = 1.5f;
+    private float fadeSpeed = 0.0f;          // Speed that the screen fades to and from black.
+    private float fadeTime = 1.0f;
+    private float timer = 0.0f;
 
     private bool sceneStarting = true;      // bool used to know if the scene is fading in or not
     private bool sceneEnding = false;
@@ -45,31 +48,51 @@ public class LoadLevelScript : MonoBehaviour {
         faderColor = screenFader.GetComponent<SpriteRenderer>().color;
 
         // make sure the screen fader object is centered on the main camera
-        screenFader.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -5);
+        screenFader.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, screenFader.transform.position.z);
 
         // initially make the fader black, so it can fade to clear
         //screenFader.renderer.material.color = Color.black;
         faderColor.a = 1.0f;
         screenFader.GetComponent<SpriteRenderer>().color = faderColor;
 
-
-
-
-
-        // default sound is the dor opening
+        // default sound is the door opening
         // temporarily doing this to avoid loading new ones
         // might be better to have separate audio sources on each scene to reduce loading times
-        if(soundType == 0)
+        if (soundType == 0)
         {
-            if(GameObject.Find("DoorOpeningSFX"))
+            if (GameObject.Find("DoorOpeningSFX"))
             {
                 GameObject audioObject = GameObject.Find("DoorOpeningSFX");
 
                 audioSource = audioObject.GetComponent<AudioSource>();
             }
-            
+
+        }
+        // sound for the market scene (door chime)
+        else if (soundType == 1)
+        {
+            if (GameObject.Find("ShopDoorBell"))
+            {
+                GameObject audioObject = GameObject.Find("ShopDoorBell");
+
+                audioSource = audioObject.GetComponent<AudioSource>();
+            }
         }
 
+        // sound for footsteps or climbing stairs
+        else if (soundType == 2)
+        {
+            if (GameObject.Find("Footsteps"))
+            {
+                GameObject audioObject = GameObject.Find("Footsteps");
+
+                audioSource = audioObject.GetComponent<AudioSource>();
+            }
+        }
+
+
+
+        
         
 	}
 
@@ -78,6 +101,9 @@ public class LoadLevelScript : MonoBehaviour {
         
         if(Input.GetMouseButtonDown(0) && (trueLoad == true))
         {
+
+            
+
             if(audioSource != null)
             {
                 // Original site for playing the door audio
@@ -108,14 +134,20 @@ public class LoadLevelScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        // incerement the timer by the amount of time passed since the last frame
+        timer += Time.deltaTime;
+
 	    if(sceneStarting)
         {
-            StartScene();
+            //StartScene();
+            FadeToClear();
         }
 
         if(sceneEnding)
         {
-            EndScene();
+            //EndScene();
+            FadeToBlack();
         }
 
         //screenFader.renderer.material.color = faderColor;
@@ -141,8 +173,24 @@ public class LoadLevelScript : MonoBehaviour {
     {
         // Lerp the color of the texture between itself and transparent.
         faderColor = screenFader.GetComponent<SpriteRenderer>().color;
+        //faderColor.a = Mathf.Lerp(1.0f, 0.0f, timer * fadeTime);
+        
+        //faderColor.a -= (fadeAmount * Time.deltaTime);
+
+        //faderColor.a = Mathf.SmoothDamp(faderColor.a, 0.0f, ref fadeSpeed, fadeTime);
         faderColor.a = Mathf.SmoothDamp(faderColor.a, 0.0f, ref fadeSpeed, fadeTime);
+        if(faderColor.a <= 0.05f)
+        {
+            faderColor.a = 0.0f;
+            timer = 0.0f;
+            sceneStarting = false;
+        }
+
         screenFader.GetComponent<SpriteRenderer>().color = faderColor;
+        
+
+        
+
 
         //Debug.Log(screenFader.GetComponent<SpriteRenderer>().color.a);
     }
@@ -152,7 +200,19 @@ public class LoadLevelScript : MonoBehaviour {
     {
         // Lerp the color of the texture between itself and black.
         faderColor = screenFader.GetComponent<SpriteRenderer>().color;
+        //faderColor.a += (fadeAmount * Time.deltaTime);
+        //faderColor.a = Mathf.Lerp(0.0f, 1.0f, timer * fadeTime);
+
+        //faderColor.a = Mathf.SmoothDamp(faderColor.a, 1.0f, ref fadeSpeed, fadeTime);
         faderColor.a = Mathf.SmoothDamp(faderColor.a, 1.0f, ref fadeSpeed, fadeTime);
+        if(faderColor.a >= 0.95f)
+        {
+            faderColor.a = 1.0f;
+            timer = 0.0f;
+            sceneEnding = false;
+        }
+        
+        
         screenFader.GetComponent<SpriteRenderer>().color = faderColor;
     }
 

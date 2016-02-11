@@ -29,6 +29,9 @@ public class IconHandler : MonoBehaviour {
     [HideInInspector]
     public GameObject[] invArray;// = new GameObject[16];
 
+    [HideInInspector]
+    public bool cartGrabbed = false;
+
     // set the object to not be destroyed on new scene loading
     void Awake()
     {
@@ -71,6 +74,8 @@ public class IconHandler : MonoBehaviour {
         //{
         //    Debug.Log(invArray[i].name);
         //}
+
+        
 	}
 	
 	// Update is called once per frame
@@ -107,6 +112,7 @@ public class IconHandler : MonoBehaviour {
         }
         else 
         {
+            beingUsed = false;
             lookIcon.renderer.enabled = false;
             useIcon.renderer.enabled = false;
             storeIcon.renderer.enabled = false;
