@@ -38,6 +38,10 @@ public class IconScript : MonoBehaviour {
 
     InventoryManager invManager;
 
+    // game object that is just a hitbox to store the food in
+    [HideInInspector]
+    public GameObject foodRegion;
+
     //Camera camera;
 
     void Awake()
@@ -52,6 +56,16 @@ public class IconScript : MonoBehaviour {
         //Debug.Log(inventoryArray.Length);
     }
 
+    void OnLevelWasLoaded(int level)
+    {
+        if(level == 2)
+        // find the food region in the living room scene
+        if (GameObject.Find("FoodRegion"))
+        {
+            foodRegion = GameObject.Find("FoodRegion");
+        }
+    }
+
 	// Use this for initialization
 	void Start () {
 
@@ -64,6 +78,8 @@ public class IconScript : MonoBehaviour {
         // initially set the textbackground to be invisible
         //textBackground.renderer.enabled = false;
         textBackground.enabled = false;
+
+        
 
         // position the text background and tet object relative to the screen
         // TODO RESUME HERE
@@ -189,8 +205,28 @@ public class IconScript : MonoBehaviour {
             //if icon is store
             else if (iconType == 2)
             {
+                // handling a food item in the inventory being used and tried to be stored in the living room
+                if (objectPropertiesScript.isFood == true && GameObject.Find("FoodRegion"))
+                {
 
-                if(objectPropertiesScript.storable == true)
+
+                    
+                    //Debug.Log(foodRegion.collider2D.bounds.size);
+                    linkedObject.transform.position = new Vector3(
+                        UnityEngine.Random.Range(foodRegion.transform.position.x - (foodRegion.collider2D.bounds.size.x / 2),
+                        foodRegion.transform.position.x + (foodRegion.collider2D.bounds.size.x / 2)),
+
+                        UnityEngine.Random.Range(foodRegion.transform.position.y - (foodRegion.collider2D.bounds.size.y / 2),
+                        foodRegion.transform.position.y + (foodRegion.collider2D.bounds.size.y / 2)),
+
+                        linkedObject.transform.position.z);
+
+                    linkedObject.transform.parent = null;
+
+                    iconHandlerScript.beingUsed = false;
+                }
+
+                else if(objectPropertiesScript.storable == true)
                 {
                     //
                     // TODO
@@ -239,6 +275,9 @@ public class IconScript : MonoBehaviour {
 
                     iconHandlerScript.beingUsed = false;
                 }
+
+                
+
 
                 iconHandlerScript.beingUsed = false;
                

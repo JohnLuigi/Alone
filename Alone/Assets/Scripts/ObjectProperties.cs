@@ -24,6 +24,7 @@ public class ObjectProperties : MonoBehaviour {
     public string description;
 
     public bool storable = false;
+    public bool isFood = false;
 
     public bool stored = false;
 
