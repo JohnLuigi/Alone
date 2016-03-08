@@ -36,7 +36,16 @@ public class ObjectProperties : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
+
+        foreach(string str in MainManager.storedFoodNames)
+        {
+            // delete the item that was stored if it is not on the level that it was stored in (in this case
+            // the lving room aka level 2)
+            if(this.name == str && Application.loadedLevel != 2)
+            {
+                Destroy(this.gameObject);
+            }
+        }
 	}
 
     void Awake()

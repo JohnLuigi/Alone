@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
 
@@ -42,10 +43,18 @@ public class IconScript : MonoBehaviour {
     [HideInInspector]
     public GameObject foodRegion;
 
+    
+    public static List<GameObject> tempFood;
+
+
     //Camera camera;
 
     void Awake()
     {
+        //tempFood = new List<GameObject>(GameObject.Find("MainManager").GetComponent<MainManager>().storedFood);
+        tempFood = new List<GameObject>(MainManager.storedFood);
+        DontDestroyOnLoad(transform.gameObject);
+
         //get the scripts necessary
         iconHandlerScript = iconHandler.GetComponent<IconHandler>();
 
@@ -53,17 +62,32 @@ public class IconScript : MonoBehaviour {
         //inventoryArray = iconHandlerScript.invArray;
         inventoryArray = invManager.GetComponent<InventoryManager>().cells;
 
-        //Debug.Log(inventoryArray.Length);
+        // set the reference to the temporary food object from the icon handler script
+        //tempFood = new List<GameObject>(iconHandler.GetComponent<IconHandler>().storedFood);
+        
     }
 
     void OnLevelWasLoaded(int level)
     {
         if(level == 2)
-        // find the food region in the living room scene
-        if (GameObject.Find("FoodRegion"))
         {
-            foodRegion = GameObject.Find("FoodRegion");
+            //tempFood = new List<GameObject>(GameObject.Find("MainManager").GetComponent<MainManager>().storedFood);
+
+            // find the food region in the living room scene
+            if (GameObject.Find("FoodRegion"))
+            {
+                foodRegion = GameObject.Find("FoodRegion");
+            }
+
+            // TODO 
+
+            
+            
+
+
         }
+
+        
     }
 
 	// Use this for initialization
@@ -80,6 +104,7 @@ public class IconScript : MonoBehaviour {
         textBackground.enabled = false;
 
         
+
 
         // position the text background and tet object relative to the screen
         // TODO RESUME HERE
@@ -205,23 +230,34 @@ public class IconScript : MonoBehaviour {
             //if icon is store
             else if (iconType == 2)
             {
+                // This block is for items that are already in the inventory
                 // handling a food item in the inventory being used and tried to be stored in the living room
                 if (objectPropertiesScript.isFood == true && GameObject.Find("FoodRegion"))
                 {
 
-
-                    
                     //Debug.Log(foodRegion.collider2D.bounds.size);
                     linkedObject.transform.position = new Vector3(
-                        UnityEngine.Random.Range(foodRegion.transform.position.x - (foodRegion.collider2D.bounds.size.x / 2),
-                        foodRegion.transform.position.x + (foodRegion.collider2D.bounds.size.x / 2)),
+                    UnityEngine.Random.Range(foodRegion.transform.position.x - (foodRegion.collider2D.bounds.size.x / 2),
+                    foodRegion.transform.position.x + (foodRegion.collider2D.bounds.size.x / 2)),
 
-                        UnityEngine.Random.Range(foodRegion.transform.position.y - (foodRegion.collider2D.bounds.size.y / 2),
-                        foodRegion.transform.position.y + (foodRegion.collider2D.bounds.size.y / 2)),
+                    UnityEngine.Random.Range(foodRegion.transform.position.y - (foodRegion.collider2D.bounds.size.y / 2),
+                    foodRegion.transform.position.y + (foodRegion.collider2D.bounds.size.y / 2)),
 
-                        linkedObject.transform.position.z);
+                    linkedObject.transform.position.z
+                    );
 
-                    linkedObject.transform.parent = null;
+                    Debug.Log(linkedObject.name + "was added to the list");
+                    tempFood.Add(Instantiate(linkedObject) as GameObject);
+
+                    //GameObject.Find("MainManager").GetComponent<MainManager>().storedFood.Add(Instantiate(linkedObject) as GameObject);
+                    MainManager.storedFood.Add(Instantiate(linkedObject) as GameObject);
+                    //GameObject.Find("MainManager").GetComponent<MainManager>().storedFoodNames.Add(linkedObject.name);
+                    MainManager.storedFoodNames.Add(linkedObject.name);
+                    MainManager.storedFoodX.Add(linkedObject.transform.position.x);
+                    MainManager.storedFoodY.Add(linkedObject.transform.position.y);
+                    MainManager.storedFoodZ.Add(linkedObject.transform.position.z);
+
+                    linkedObject.transform.parent = null; // un-parent the food item from the inventory cell
 
                     iconHandlerScript.beingUsed = false;
                 }
@@ -266,6 +302,42 @@ public class IconScript : MonoBehaviour {
                             //linkedObject.transform.localScale = inventoryArray[i].renderer.bounds.size;
 
                             linkedObject.transform.parent = inventoryArray[i].transform;
+
+                            //// chunk for adding food items to the storedFood Array
+                            //if(objectPropertiesScript.isFood == true)
+                            //{
+                                
+                            //    // add the food object that you are storing to the list to be checked upon scene loading
+                            //    // search through the temp food array for an open spot, then store the food in that spot
+                            //    //for (int j = 0; j < tempFood.Length; j++)
+                            //    //{
+                            //    //    if (tempFood[j] == null)
+                            //    //    {
+                            //    //        Debug.Log(linkedObject.name + " was added to the storedFood array at position " + j);
+                            //    //        tempFood[j] = Instantiate(linkedObject, linkedObject.transform.position, linkedObject.transform.rotation) as GameObject;
+
+                            //    //        System.Array.Copy(tempFood, iconHandler.GetComponent<IconHandler>().storedFood,tempFood.Length);
+                            //    //        break; // this break takes you out of the current nested for loop
+                            //    //    }
+                            //    //}
+
+                            //    // add the linked object to the list
+                                
+
+                            //    //foreach(GameObject tempObject in tempFood)
+                            //    //{
+                            //    //    if(tempObject == null)
+                            //    //    {
+                            //    //        // add the linked object to the list
+                                        
+                            //    //        break;
+                            //    //    }
+                            //    //}
+                            //}
+                            
+
+
+
                             objectPropertiesScript.stored = true;
                             iconHandlerScript.beingUsed = false;
                             return;

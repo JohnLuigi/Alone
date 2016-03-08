@@ -15,8 +15,22 @@ using System.Collections.Generic;
 public class MainManager : MonoBehaviour {
 
     // will store the used items in a list
-    public List<string> usedItems = new List<string>();
+    public static List<GameObject> storedFood;
 
+    public static List<string> storedFoodNames;
+    public static List<float> storedFoodX;
+    public static List<float> storedFoodY;
+    public static List<float> storedFoodZ;
+
+    void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+        storedFood = new List<GameObject>();
+        storedFoodNames = new List<string>();
+        storedFoodX = new List<float>();
+        storedFoodY = new List<float>();
+        storedFoodZ = new List<float>();
+    }
 
 	// Use this for initialization
 	void Start () {

@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\OnClickText.cs" />
      <Compile Include="Assets\Scripts\SpecialInteract.cs" />
      <Compile Include="Assets\Scripts\StatusTextScript.cs" />
+     <Compile Include="Assets\Scripts\StoreRegion.cs" />
      <Compile Include="Assets\Scripts\SwapScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.7.0/Standalone/UnityEngine.UI.dll</HintPath>

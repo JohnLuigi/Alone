@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class IconHandler : MonoBehaviour {
 
@@ -29,8 +30,14 @@ public class IconHandler : MonoBehaviour {
     [HideInInspector]
     public GameObject[] invArray;// = new GameObject[16];
 
+    // tracks if the cart was used and therefore should be rendered when visiting the scene
     [HideInInspector]
     public bool cartGrabbed = false;
+
+    // expanding list of stored food items
+    // trying a list now instead of an array
+    [HideInInspector]
+    public List<GameObject> storedFood;
 
     // set the object to not be destroyed on new scene loading
     void Awake()
@@ -53,6 +60,10 @@ public class IconHandler : MonoBehaviour {
 
         // set the script's inventory cells
         invArray = invManager.GetComponent<InventoryManager>().cells;
+
+        // initialize the storedFood array
+        // make it big enough that the player could not fill it, so maybe 100 size?
+        storedFood = new List<GameObject>();
 
         
     }
