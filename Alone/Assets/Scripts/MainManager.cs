@@ -14,18 +14,23 @@ using System.Collections.Generic;
 
 public class MainManager : MonoBehaviour {
 
-    // will store the used items in a list
-    public static List<GameObject> storedFood;
-
+    // lists that persit through level loads and store the names + locations of the food that you have picked up
     public static List<string> storedFoodNames;
     public static List<float> storedFoodX;
     public static List<float> storedFoodY;
     public static List<float> storedFoodZ;
 
+    // public values that are used to track how much time has passed
+    public static int days = 3;
+    public static int hours = 24;
+
+    // static ints that track the days and hours left
+    // they will change depending on the actions you take, and can only decrease
+
     void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
-        storedFood = new List<GameObject>();
+        //storedFood = new List<GameObject>();
         storedFoodNames = new List<string>();
         storedFoodX = new List<float>();
         storedFoodY = new List<float>();
@@ -36,9 +41,20 @@ public class MainManager : MonoBehaviour {
 	void Start () {
 	
 	}
-	
+
+    // do something when a level is loaded
+    void OnLevelWasLoaded(int level)
+    {
+        if (level != null)
+        {
+            Debug.Log("Level " + level + " was loaded");
+        }
+
+    }
+
 	// Update is called once per frame
 	void Update () {
-	
+	    
+
 	}
 }

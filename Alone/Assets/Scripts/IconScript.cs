@@ -44,7 +44,7 @@ public class IconScript : MonoBehaviour {
     public GameObject foodRegion;
 
     
-    public static List<GameObject> tempFood;
+    //public static List<GameObject> tempFood;
 
 
     //Camera camera;
@@ -52,7 +52,7 @@ public class IconScript : MonoBehaviour {
     void Awake()
     {
         //tempFood = new List<GameObject>(GameObject.Find("MainManager").GetComponent<MainManager>().storedFood);
-        tempFood = new List<GameObject>(MainManager.storedFood);
+        //tempFood = new List<GameObject>(MainManager.storedFood);
         DontDestroyOnLoad(transform.gameObject);
 
         //get the scripts necessary
@@ -247,10 +247,10 @@ public class IconScript : MonoBehaviour {
                     );
 
                     Debug.Log(linkedObject.name + "was added to the list");
-                    tempFood.Add(Instantiate(linkedObject) as GameObject);
+                    //tempFood.Add(Instantiate(linkedObject) as GameObject);
 
                     //GameObject.Find("MainManager").GetComponent<MainManager>().storedFood.Add(Instantiate(linkedObject) as GameObject);
-                    MainManager.storedFood.Add(Instantiate(linkedObject) as GameObject);
+                    //MainManager.storedFood.Add(Instantiate(linkedObject) as GameObject);
                     //GameObject.Find("MainManager").GetComponent<MainManager>().storedFoodNames.Add(linkedObject.name);
                     MainManager.storedFoodNames.Add(linkedObject.name);
                     MainManager.storedFoodX.Add(linkedObject.transform.position.x);

@@ -63,7 +63,10 @@ public class StoreRegion : MonoBehaviour {
             if (MainManager.storedFoodNames[i] != null && GameObject.Find(MainManager.storedFoodNames[i]))
             {
                 GameObject tempItem = GameObject.Find(MainManager.storedFoodNames[i]);
-                tempItem.transform.position = new Vector3(MainManager.storedFoodX[i], MainManager.storedFoodY[i], MainManager.storedFoodZ[i]);
+                // TODO maybe alter the Z value here so that it's not above the fade to black screen
+                // fade to black screen is at z value of -4
+                //tempItem.transform.position = new Vector3(MainManager.storedFoodX[i], MainManager.storedFoodY[i], MainManager.storedFoodZ[i]);
+                tempItem.transform.position = new Vector3(MainManager.storedFoodX[i], MainManager.storedFoodY[i], -3.9f);
 
             }
         }

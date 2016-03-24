@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\BackpackScript.cs" />
      <Compile Include="Assets\Scripts\CanvasScript.cs" />
      <Compile Include="Assets\Scripts\DragScript.cs" />
+     <Compile Include="Assets\Scripts\EndManager.cs" />
      <Compile Include="Assets\Scripts\EventScript.cs" />
      <Compile Include="Assets\Scripts\IconHandler.cs" />
      <Compile Include="Assets\Scripts\IconScript.cs" />
