@@ -16,6 +16,7 @@ public class EndManager : MonoBehaviour {
 
     private bool fadingIn = true; // used to track whether to fade in or fade out the text
     private int textStep = 0; // int used to track what message to display when each one scrolls by
+    private bool textMoving = true; // used to track whether the text is moving or not. Basically, move text down until the last message, then have it stand still
 
 	// Use this for initialization
 	void Start () {
@@ -34,8 +35,16 @@ public class EndManager : MonoBehaviour {
         // use this line once the full setup with other scenes is working
         if(textStep == 0)
         {
-            //displayText.text = MainManager.days + " days have finally passed.";
-            displayText.text = 3 + " days have finally passed.";
+            if (MainManager.storedFoodNames == null)
+            {
+                displayText.text = 4 + " days have finally passed.";
+            }
+            else
+            {
+
+                displayText.text = MainManager.days + " days have finally passed.";
+            }
+                       
         }
         
 
@@ -45,44 +54,109 @@ public class EndManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        FadeText();
-        // always move the text down
-        MoveTextDown();
+        // if it is not at the final message, keep moving the text
+        if (textMoving)
+        {
+            FadeText();
+            // always move the text down
+            MoveTextDown();
+        }
+        else
+        {
+            // if the 
+            if (Time.time > nextUsage)
+            {
+                Debug.Log("reached the end of the game");
+                UnityEditor.EditorApplication.isPlaying = false;
+                Application.Quit();
+            }
+        }
+        
 
         // after 2 seconds have passed, do this block
         if(Time.time > nextUsage)
         {
-            // set the next delay time (now + delay seconds)
-            nextUsage = Time.time + delay;
+            if (delay == 4)
+            {
+                nextUsage = Time.time + delay;
+                textMoving = false;
+            }
+            if(textMoving)
+            {
+                // set the next delay time (now + delay seconds)
+                nextUsage = Time.time + delay;
+
+                //update the text to be displayed
+                textStep++;
+                if (textStep == 1)
+                {
+                    if (MainManager.storedFoodNames == null)
+                    {
+                        displayText.text = "In this time, I collected " + 13 + " pounds of food to survive for " + (int)(13 / 6) + " months.";                        
+                    }
+                    else
+                    {
+                        string poundText;
+                        // if the pounds of food stored is one, use pound instead of pounds 
+                        if (MainManager.storedFoodNames.Count == 1)
+                        {
+                            poundText = " pound of food to survive for ";
+                        }
+                        else
+                        {
+                            poundText = " pounds of food to survive for ";
+                        }
+
+                        string monthText;
+                        // say month if the food only lasted for one month
+                        if((int)MainManager.storedFoodNames.Count / 6 == 1)
+                        {
+                            monthText = " month.";
+                        }
+                        else
+                        {
+                            monthText = " months.";
+                        }
+
+                        // set the text string
+                        displayText.text = "In this time, I collected " + MainManager.storedFoodNames.Count + poundText
+                        + (int)(MainManager.storedFoodNames.Count / 6) + monthText;
+                    }
+                    
+                    
+
+                }
+                // block that checks progress of the raft or what exaclty was used to esapce the town
+                else if (textStep == 2)
+                {
+                    displayText.text = "The raft was just barely built in time, and I made it downriver.";
+
+                }
+                else if(textStep == 3)
+                {
+                    displayText.text = "With these supplies, I was able to escape.";
+                }
+                // final message block to determine if you lived or not. Stops the movement upon hitting this block
+                // sets the delay to be half of what the original was, so that the text moves halfway down and then stops
+                else
+                {
+                    Debug.Log("hit the part where i shorten the delay");
+                    delay = 4;
+                    nextUsage = Time.time + delay;
+                    displayText.text = "                        THE END";
+                }
+                // can add more text steps here for different end messages
+
+
+                // move the block of text back up
+                ResetHeight();
+                // set the text to be 0 opacity again
+                Color tempColor = new Color(255, 255, 255, 0);
+                displayText.color = tempColor;
+                // let the text fade back in (from 0 to 1)
+                fadingIn = true;
+            }
             
-            //update the text to be displayed
-            textStep++;
-            if(textStep == 1)
-            {
-                //displayText.text = "In this time, I collected " + MainManager.storedFoodNames.Count + " pounds of food to survive for "
-                //+ (int)(MainManager.storedFoodNames.Count / 6) + " months."
-                displayText.text = "In this time, I collected " + 12 + " pounds of food to survive for " + (int)(13 / 6) + " months.";
-            } 
-            // block that checks progress of the raft or what exaclty was used to esapce the town
-            else if (textStep == 2)
-            {
-                displayText.text = "The raft was just barely built in time, and I made it downriver.";
-            }
-            // final message block to determine if you lived or not. Stops the movement upon hitting this block
-            else
-            {
-                displayText.text = "With these supplies, I was able to escape.";
-            }
-            // can add more text steps here for different end messages
-
-
-            // move the block of text back up
-            ResetHeight();
-            // set the text to be 0 opacity again
-            Color tempColor = new Color(255, 255, 255, 0);
-            displayText.color = tempColor;
-            // let the text fade back in (from 0 to 1)
-            fadingIn = true;
 
         }
 

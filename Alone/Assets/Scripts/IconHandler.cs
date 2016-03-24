@@ -107,6 +107,13 @@ public class IconHandler : MonoBehaviour {
                 lookIcon.transform.position = startPos;
                 useIcon.transform.position = startPos;
                 storeIcon.transform.position = startPos;
+                // move the icons' z values to be one less than the object being clicked on
+                // to stop the icons from intersecting the object being clicked on itself if the icons are to exist within the
+                // confines for the object's hitbox
+                lookIcon.transform.position += new Vector3(0.0f, 0.0f, -1.0f);
+                useIcon.transform.position += new Vector3(0.0f, 0.0f, -1.0f);
+                storeIcon.transform.position += new Vector3(0.0f, 0.0f, -1.0f);
+
                 firstClicked = false;
             }
 
