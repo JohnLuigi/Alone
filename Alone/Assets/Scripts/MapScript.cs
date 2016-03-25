@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using UnityEngine.UI;
 
 public class MapScript : MonoBehaviour {
 
@@ -40,7 +41,8 @@ public class MapScript : MonoBehaviour {
             //Debug.Log("it was found");
             //GameObject TempObject = ;
             lastArea = GameObject.Find("InventoryHandler").GetComponent<InventoryManager>().lastLevel;
-            Debug.Log(lastArea);
+            lastArea = MainManager.previousLevel;
+            //Debug.Log(lastArea);
         }
         
         // create GameObjects by searching for their names
@@ -82,7 +84,6 @@ public class MapScript : MonoBehaviour {
          * RedPaths[8] = Dock to Market
          * RedPaths[9] = Dock to TownHall 
          * */
-
 
     }
 	
@@ -468,8 +469,8 @@ public class MapScript : MonoBehaviour {
         }
         
 
-        Debug.Log(spawnPoint.transform.position);
-        Debug.Log(spawnPoint.GetComponent<BoxCollider2D>().size);
+        //Debug.Log(spawnPoint.transform.position);
+        //Debug.Log(spawnPoint.GetComponent<BoxCollider2D>().size);
 
         //// move the icons to their end positions, a short distance from the starting points
         //for (float i = 0; i < iconDistance; i += iconSpeed)
@@ -497,7 +498,21 @@ public class MapScript : MonoBehaviour {
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        Debug.Log("clicked an icon");
+                        //Debug.Log("clicked an icon");
+                        // do not subtract time from going to the map or if you are going back to the same area
+                        if (LevelToLoad == "MainMap" || string.Equals(MainManager.previousLevel, LevelToLoad))
+                        {
+                            MainManager.takeTime = false;
+                        }
+                        //only take time away if you are leaving the map to go to a new area
+                        else
+                        {
+                            MainManager.takeTime = true;
+                        }
+
+                        // set the previous level to be the current level right before you load the next one
+                        MainManager.previousLevel = Application.loadedLevelName;
+
                         Application.LoadLevel(LevelToLoad);
                     }
 
@@ -506,7 +521,7 @@ public class MapScript : MonoBehaviour {
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        Debug.Log("clicked an icon");
+                        //Debug.Log("clicked an icon");
                         AcceptIcon.renderer.enabled = false;
                         CancelIcon.renderer.enabled = false;
                         // TODO add the confirmation text disappearing here

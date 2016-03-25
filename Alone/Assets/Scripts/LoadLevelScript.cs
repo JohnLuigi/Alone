@@ -90,8 +90,6 @@ public class LoadLevelScript : MonoBehaviour {
             }
         }
 
-
-
         
         
 	}
@@ -122,6 +120,26 @@ public class LoadLevelScript : MonoBehaviour {
                 //EndScene();
                 //FadeToBlack();
                 sceneEnding = true;
+                // set the previous loaded level in MainManager script, but only if it was not the same as the level just returned from
+                // basically, skip the loading of the previous level if you are returning to the same level so that time is not taking for 
+                // coming back to the same spot
+
+                // do not subtract time from going to the map or if you are going back to the same area
+                if (levelToLoad == "MainMap" || string.Equals(MainManager.previousLevel, levelToLoad))
+                {
+                    
+                    MainManager.takeTime = false;
+                }
+                //only take time away if you are leaving the map to go to a new area
+                else
+                {
+                    MainManager.takeTime = true;
+                }
+
+                // set the previous level to be the current level right before you load the next one
+                MainManager.previousLevel = Application.loadedLevelName;
+
+                // load the level
                 Application.LoadLevel(levelToLoad);
             }
 
@@ -166,6 +184,26 @@ public class LoadLevelScript : MonoBehaviour {
         audioSource.Play();
         yield return new WaitForSeconds(audioSource.clip.length);
 
+        // set the previous loaded level in MainManager script, but only if it was not the same as the level just returned from
+        // basically, skip the loading of the previous level if you are returning to the same level so that time is not taking for 
+        // coming back to the same spot
+
+        // do not subtract time from going to the map or if you are going back to the same area
+        if (levelToLoad == "MainMap" || string.Equals(MainManager.previousLevel, levelToLoad))
+        {
+            
+            MainManager.takeTime = false;
+        }
+        //only take time away if you are leaving the map to go to a new area
+        else
+        {
+            MainManager.takeTime = true;
+        }
+
+        // set the previous level to be the current level right before you load the next one
+        MainManager.previousLevel = Application.loadedLevelName;
+
+        // load the level
         Application.LoadLevel(levelToLoad);
     }
 

@@ -79,12 +79,6 @@ public class IconScript : MonoBehaviour {
                 foodRegion = GameObject.Find("FoodRegion");
             }
 
-            // TODO 
-
-            
-            
-
-
         }
 
         
@@ -156,10 +150,21 @@ public class IconScript : MonoBehaviour {
             // if icon is look
             if (iconType == 0)
             {
-                // output text description stored on object
-                
+                // check if the item is a certain type, otherwise do the standard description output            
+
+                // block to handle the calendar when it is clicked on and stored in the inventory
+                if (linkedObject.name == "Calendar")
+                {
+                    clickedTime = Time.time;
+
+                    //TODO
+                    // add different types of handling for one hour or multiple hours for grammar
+                    objectText = "It says I have " + MainManager.days + " days and " + MainManager.hours + " hours left. Weird.";
+                }
+
+                // output text description stored on object                
                 // if object has a description field with a string in it
-                if(!String.Equals(objectPropertiesScript.description, ""))
+                else if (!String.Equals(objectPropertiesScript.description, ""))
                 {
                     // set the starting time for the text
                     clickedTime = Time.time;
@@ -347,8 +352,6 @@ public class IconScript : MonoBehaviour {
 
                     iconHandlerScript.beingUsed = false;
                 }
-
-                
 
 
                 iconHandlerScript.beingUsed = false;

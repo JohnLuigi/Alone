@@ -37,12 +37,12 @@ public class EndManager : MonoBehaviour {
         {
             if (MainManager.storedFoodNames == null)
             {
-                displayText.text = 4 + " days have finally passed.";
+                displayText.text = 3 + " days have passed.";
             }
             else
             {
-
-                displayText.text = MainManager.days + " days have finally passed.";
+                // add grammar here for hour(s)
+                displayText.text = MainManager.days + " days  and " + MainManager.hours + " hours have passed since I came back home.";
             }
                        
         }
