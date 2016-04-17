@@ -45,8 +45,13 @@ public class MainManager : MonoBehaviour {
 
     // final super variable to load the end scene
     public static bool loadEnd = false;
-
+    // variable used to see if the text object should be displaying anything or not
     private bool showingText = false;
+
+    // images used to tint the screen for the time of day
+    private GameObject sunsetOverlay;
+    private GameObject nightOverlay;
+    private GameObject dawnOverlay;
 
     void Awake()
     {
@@ -61,9 +66,25 @@ public class MainManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        // find and set the references to the text object and images
         lookText = GameObject.Find("LookText").GetComponent<Text>();
         lookTextShadow = GameObject.Find("LookTextShadow").GetComponent<Text>();
         textBackground = GameObject.Find("TextBackgroundGUI").GetComponent<Image>();
+
+        // find and set the references to the color overlays
+        sunsetOverlay = GameObject.Find("SunsetOverlay");
+        nightOverlay = GameObject.Find("NightOverlay");
+        dawnOverlay = GameObject.Find("DawnOverlay");
+
+        // center the overlays on the camera
+        sunsetOverlay.transform.position = new Vector3 (Camera.main.transform.position.x, Camera.main.transform.position.y, -3.5f);
+        nightOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.5f);
+        dawnOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.5f);
+
+        // hide the overlays at the start
+        sunsetOverlay.renderer.enabled = false;
+        nightOverlay.renderer.enabled = false;
+        dawnOverlay.renderer.enabled = false;
 	}
 
     // do something when a level is loaded
@@ -74,6 +95,11 @@ public class MainManager : MonoBehaviour {
         {
             Debug.Log(Application.loadedLevelName);
             Debug.Log("Days left: " + MainManager.days + ", hours left: " + MainManager.hours);
+
+            // center the overlays on the camera
+            sunsetOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.5f);
+            nightOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.5f);
+            dawnOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.5f);
 
             // hide and text that was to be shown from the previous level
             showingText = false;
@@ -88,12 +114,11 @@ public class MainManager : MonoBehaviour {
         }
 
         // level ranges:
-        // 0-3 are inside the house
-        // 4-5 are reaching the house itself
-        // 6 is the main map
-        // 7-8 are town areas
-        // 9 is intro scene
-        // 10-12 are town areas
+        // 0 is the intro scene
+        // 1-4 are inside the house
+        // 5-6 are reaching the house itself
+        // 7 is the main map
+        // 8-12 are town areas
         // 13 is end scene
 
         // only update the time taken if the previous level traveled was the map scene
@@ -102,7 +127,7 @@ public class MainManager : MonoBehaviour {
         switch (level)
         {
             // reaching the house
-            case 5:
+            case 6:
                 // if the previous level was the living room or the same level, don't subtract time taken
                 if (MainManager.previousLevel == "LivingRoomScene")
                 {
@@ -117,15 +142,15 @@ public class MainManager : MonoBehaviour {
                 break;
 
             // reaching the park
-            case 7:
+            case 8:
                 SetText("Used to play in this park often as a kid. This took two hours?");
                 UpdateTimeLeft(2);
                 break;
 
             // reaching the library
-            case 8:
+            case 9:
                 SetText("There's good information here. I might take a while.");
-                UpdateTimeLeft(24); // 4
+                UpdateTimeLeft(4); // 4
                 break;
 
             // reaching the dock
@@ -133,7 +158,7 @@ public class MainManager : MonoBehaviour {
                 // TODO
                 // maybe check if the raft is ready or not here
                 SetText("Always wanted to go down the river.");
-                UpdateTimeLeft(24); //3
+                UpdateTimeLeft(3); //3
                 break;
 
             // reaching the market
@@ -179,6 +204,7 @@ public class MainManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        // block handling text and text background
         if(showingText)
         {
             // Display the neccesary text
@@ -214,6 +240,37 @@ public class MainManager : MonoBehaviour {
 
         }
         
+        // maybe add a block here to check for certain levels to be tinted or not
+
+        // block handling color overlay display
+        if (MainManager.hours == 6 || MainManager.hours == 7)
+        {
+            // enable dawn overlay
+            dawnOverlay.renderer.enabled = true;
+            sunsetOverlay.renderer.enabled = false;
+            nightOverlay.renderer.enabled = false;
+        }
+        else if (MainManager.hours == 17 || MainManager.hours == 18)
+        {
+            // enable sunset overlay
+            sunsetOverlay.renderer.enabled = true;
+            dawnOverlay.renderer.enabled = false;
+            nightOverlay.renderer.enabled = false;
+        }
+        else if (MainManager.hours <= 5 || MainManager.hours >= 19)
+        {
+            // enable night overlay
+            nightOverlay.renderer.enabled = true;
+            sunsetOverlay.renderer.enabled = false;
+            dawnOverlay.renderer.enabled = false;
+        }
+        else
+        {
+            // normal display, don't show any overlays
+            nightOverlay.renderer.enabled = false;
+            sunsetOverlay.renderer.enabled = false;
+            dawnOverlay.renderer.enabled = false;
+        }
 
 	}
 

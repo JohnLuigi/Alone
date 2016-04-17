@@ -30,11 +30,32 @@ public class MapScript : MonoBehaviour {
     // Right before the map is loaded, a global string containing the last visited area will be set
     public string lastArea = "HouseFrontMap";
 
+    // string to store the level that will be loaded
     private string LevelToLoad;
+
+    //// text objects to be updated upon level load confirmation
+    //private Text lookText;
+    //private Text lookTextShadow;
+    //private Image textBackground; // the gray background behind the text
+
+    //// timers used to count how long the text should be shown
+    //private float loadedTime = 0.0f, currentTime = 0.0f;
+    //// seconds to show the text
+    //private float timeToShow = 3.0f;
+    //// string to be used to display text
+    //private string objectText = "";
+
+    //// variable used to see if the text object should be displaying anything or not
+    //private bool showingText = false;
 
 
 	// Use this for initialization
 	void Start () {
+
+        //// find and set the references to the text object and images
+        //lookText = GameObject.Find("LookText").GetComponent<Text>();
+        //lookTextShadow = GameObject.Find("LookTextShadow").GetComponent<Text>();
+        //textBackground = GameObject.Find("TextBackgroundGUI").GetComponent<Image>();
 
         if(GameObject.Find("InventoryHandler"))
         {
@@ -467,6 +488,8 @@ public class MapScript : MonoBehaviour {
                     -4.0f);
                 break;
         }
+        
+
         
 
         //Debug.Log(spawnPoint.transform.position);
