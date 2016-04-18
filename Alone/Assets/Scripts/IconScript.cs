@@ -69,7 +69,7 @@ public class IconScript : MonoBehaviour {
 
     void OnLevelWasLoaded(int level)
     {
-        if(level == 2)
+        if(level == 3)
         {
             //tempFood = new List<GameObject>(GameObject.Find("MainManager").GetComponent<MainManager>().storedFood);
 
@@ -226,7 +226,16 @@ public class IconScript : MonoBehaviour {
                     Destroy(Cart);
 
                     iconHandlerScript.cartGrabbed = true;
+                    MainManager.cartGrabbed = true;
 
+                }
+
+                // INVENTORY ITEM USE BLOCK
+                // add the knife, saw, axe, etc. here
+                if (linkedObject.name == "Knife" || linkedObject.name == "Saw" || linkedObject.name == "Axe")
+                {
+                    MainManager.itemInUse = true;
+                    MainManager.itemBeingUsed = linkedObject.name;
                 }
 
                 iconHandlerScript.beingUsed = false;
@@ -248,7 +257,8 @@ public class IconScript : MonoBehaviour {
                     UnityEngine.Random.Range(foodRegion.transform.position.y - (foodRegion.collider2D.bounds.size.y / 2),
                     foodRegion.transform.position.y + (foodRegion.collider2D.bounds.size.y / 2)),
 
-                    linkedObject.transform.position.z
+                    //linkedObject.transform.position.z
+                    foodRegion.transform.position.z
                     );
 
                     Debug.Log(linkedObject.name + "was added to the list");
@@ -307,6 +317,13 @@ public class IconScript : MonoBehaviour {
                             //linkedObject.transform.localScale = inventoryArray[i].renderer.bounds.size;
 
                             linkedObject.transform.parent = inventoryArray[i].transform;
+
+                            // if the axe was grabbed, set the boolean in MainManager to true
+                            if(linkedObject.name == "Axe")
+                            {
+                                MainManager.axeGrabbed = true;
+                            }
+                            
 
                             //// chunk for adding food items to the storedFood Array
                             //if(objectPropertiesScript.isFood == true)

@@ -40,8 +40,8 @@ public class ObjectProperties : MonoBehaviour {
         foreach(string str in MainManager.storedFoodNames)
         {
             // delete the item that was stored if it is not on the level that it was stored in (in this case
-            // the lving room aka level 2)
-            if(this.name == str && Application.loadedLevel != 2)
+            // the lving room aka level 3)
+            if(this.name == str && Application.loadedLevel != 3)
             {
                 Destroy(this.gameObject);
             }

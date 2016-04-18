@@ -4,8 +4,41 @@ using System.Collections.Generic;
 
 public class StoreRegion : MonoBehaviour {
 
+    // the two sprites used to show the cart that will be in front of and behind the stored food region
+    private GameObject cartFront;
+    private GameObject cartBack;
+
 	// Use this for initialization
 	void Start () {
+
+        cartFront = GameObject.Find("CartFront");
+        cartBack = GameObject.Find("CartBack");
+
+        // hide or show the cart components in the level depending on whether it was collected in the market or not
+        if(MainManager.cartGrabbed == false)
+        {
+            cartFront.renderer.enabled = false;
+            cartBack.renderer.enabled = false;
+        }
+
+        // look to see if there are objects in the stored food array, and if there are, set the existing copies
+        // in the level to have the same position as the stored objects
+
+        // the storedFoodNames list is the same length as the x, y, and z lists
+        for (int i = 0; i < MainManager.storedFoodNames.Count; i++)
+        {
+            // move the hidden stored objects to the food region on level load
+            if (MainManager.storedFoodNames[i] != null && GameObject.Find(MainManager.storedFoodNames[i]))
+            {                
+                GameObject tempItem = GameObject.Find(MainManager.storedFoodNames[i]);
+                // TODO maybe alter the Z value here so that it's not above the fade to black screen
+                // fade to black screen is at z value of -4
+                //tempItem.transform.position = new Vector3(MainManager.storedFoodX[i], MainManager.storedFoodY[i], MainManager.storedFoodZ[i]);
+                tempItem.transform.position = new Vector3(MainManager.storedFoodX[i], MainManager.storedFoodY[i], -2.5f);
+
+            }
+        }
+
         //Debug.Log("This was run");
         //List<GameObject> thisFood = new List<GameObject>(MainManager.storedFood);
 
@@ -54,22 +87,7 @@ public class StoreRegion : MonoBehaviour {
 
         // Somewhere in this block initialize the array that contains the stored food items
 
-        // look to see if there are objects in the stored food array, and if there are, set the existing copies
-        // in the level to have the same position as the stored objects
-
-        // the storedFoodNames list is the same length as the x, y, and z lists
-        for (int i = 0; i < MainManager.storedFoodNames.Count; i++ )
-        {
-            if (MainManager.storedFoodNames[i] != null && GameObject.Find(MainManager.storedFoodNames[i]))
-            {
-                GameObject tempItem = GameObject.Find(MainManager.storedFoodNames[i]);
-                // TODO maybe alter the Z value here so that it's not above the fade to black screen
-                // fade to black screen is at z value of -4
-                //tempItem.transform.position = new Vector3(MainManager.storedFoodX[i], MainManager.storedFoodY[i], MainManager.storedFoodZ[i]);
-                tempItem.transform.position = new Vector3(MainManager.storedFoodX[i], MainManager.storedFoodY[i], -3.9f);
-
-            }
-        }
+        
 
         //for (int i = 0; i < thisFood.Length; i++)
         //{

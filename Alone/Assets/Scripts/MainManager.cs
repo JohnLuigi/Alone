@@ -53,6 +53,26 @@ public class MainManager : MonoBehaviour {
     private GameObject nightOverlay;
     private GameObject dawnOverlay;
 
+    // bool used to track if the cart was grabbed and whether to show it in the living room or not
+    public static bool cartGrabbed = false;
+
+    // bool used to see if the player is trying to use an item with an object in the game world
+    // (after clicking the use icon)
+    public static bool itemInUse = false;
+
+    // string to track the name of the item being used.
+    // if the right item being used is "used on" the correct item, take the necessary action
+    public static string itemBeingUsed = "";
+
+    // bool used to see if the axe is stored, and whether to hide/show the broken glass
+    public static bool axeGrabbed = false;
+
+    // bools used to see if the trees were used or not
+    // to hide/show logs/trees on level load
+    public static bool tree1Used = false;
+    public static bool tree2Used = false;
+    public static bool tree3Used = false;
+
     void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
@@ -65,6 +85,8 @@ public class MainManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        
 
         // find and set the references to the text object and images
         lookText = GameObject.Find("LookText").GetComponent<Text>();
@@ -93,13 +115,13 @@ public class MainManager : MonoBehaviour {
         // on any level load, check if the time left is zero
         if(level >= 0)
         {
-            Debug.Log(Application.loadedLevelName);
+            //Debug.Log(Application.loadedLevelName);
             Debug.Log("Days left: " + MainManager.days + ", hours left: " + MainManager.hours);
 
             // center the overlays on the camera
-            sunsetOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.5f);
-            nightOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.5f);
-            dawnOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.5f);
+            sunsetOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.9f);
+            nightOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.9f);
+            dawnOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.9f);
 
             // hide and text that was to be shown from the previous level
             showingText = false;
@@ -145,6 +167,78 @@ public class MainManager : MonoBehaviour {
             case 8:
                 SetText("Used to play in this park often as a kid. This took two hours?");
                 UpdateTimeLeft(2);
+
+                // hide/show trees here
+                // tree 1 stuff
+                if (MainManager.tree1Used == true)
+                {
+                    // hide the tree, show the logs (don't need to show the stump since they were originally
+                    // behind the trees)
+                    GameObject tempTree = GameObject.Find("Tree1");
+                    tempTree.renderer.enabled = false;
+                    GameObject tempLog1 = GameObject.Find("Log1_1");
+                    tempLog1.transform.position = new Vector3(tempLog1.transform.position.x, tempLog1.transform.position.y, -2.5f);
+                    GameObject tempLog2 = GameObject.Find("Log1_2");
+                    tempLog2.transform.position = new Vector3(tempLog2.transform.position.x, tempLog2.transform.position.y, -2.5f);
+                }
+                else // if the tree has NOT been used, show the tree, hide the logs
+                {
+                    GameObject tempTree = GameObject.Find("Tree1");
+                    tempTree.renderer.enabled = true;
+                    // move hte logs behind the background to hide htem and so they can't be clicked on
+                    GameObject tempLog1 = GameObject.Find("Log1_1");
+                    tempLog1.transform.position = new Vector3(tempLog1.transform.position.x, tempLog1.transform.position.y, 1.0f);
+                    GameObject tempLog2 = GameObject.Find("Log1_2");
+                    tempLog2.transform.position = new Vector3(tempLog2.transform.position.x, tempLog2.transform.position.y, 1.0f);
+                }
+                
+                // tree 2 stuff
+                if(MainManager.tree2Used == true)
+                {
+                    // hide the tree, show the logs (don't need to show the stump since they were originally
+                    // behind the trees)
+                    GameObject tempTree = GameObject.Find("Tree2");
+                    tempTree.renderer.enabled = false;
+                    GameObject tempLog1 = GameObject.Find("Log2_1");
+                    tempLog1.transform.position = new Vector3(tempLog1.transform.position.x, tempLog1.transform.position.y, -2.4f);
+                    GameObject tempLog2 = GameObject.Find("Log2_2");
+                    tempLog2.transform.position = new Vector3(tempLog2.transform.position.x, tempLog2.transform.position.y, -2.4f);
+                }
+                else // if the tree has NOT been used, show the tree, hide the logs
+                {
+                    GameObject tempTree = GameObject.Find("Tree2");
+                    tempTree.renderer.enabled = true;
+                    GameObject tempLog1 = GameObject.Find("Log2_1");
+                    tempLog1.transform.position = new Vector3(tempLog1.transform.position.x, tempLog1.transform.position.y, 1.0f);
+                    GameObject tempLog2 = GameObject.Find("Log2_2");
+                    tempLog2.transform.position = new Vector3(tempLog2.transform.position.x, tempLog2.transform.position.y, 1.0f);
+                }
+                
+                // tree 3 stuff
+                if(MainManager.tree3Used == true)
+                {
+
+                    // hide the tree, show the logs (don't need to show the stump since they were originally
+                    // behind the trees)
+                    GameObject tempTree = GameObject.Find("Tree3");
+                    tempTree.renderer.enabled = false;
+                    GameObject tempLog1 = GameObject.Find("Log3_1");
+                    tempLog1.transform.position = new Vector3(tempLog1.transform.position.x, tempLog1.transform.position.y, -3.5f);
+                    GameObject tempLog2 = GameObject.Find("Log3_2");
+                    tempLog2.transform.position = new Vector3(tempLog2.transform.position.x, tempLog2.transform.position.y, -3.5f);
+                }
+                else // if the tree has NOT been used, show the tree, hide the logs
+                {
+                    GameObject tempTree = GameObject.Find("Tree3");
+                    tempTree.renderer.enabled = true;
+                    GameObject tempLog1 = GameObject.Find("Log3_1");
+                    tempLog1.transform.position = new Vector3(tempLog1.transform.position.x, tempLog1.transform.position.y, 1.0f);
+                    GameObject tempLog2 = GameObject.Find("Log3_2");
+                    tempLog2.transform.position = new Vector3(tempLog2.transform.position.x, tempLog2.transform.position.y, 1.0f);
+                }
+
+                // TODO
+                // add the checking of the used logs list to determine which logs to show/hide
                 break;
 
             // reaching the library
@@ -171,6 +265,34 @@ public class MainManager : MonoBehaviour {
             case 12:
                 SetText("Creepy that it's empty. Useful stuff here though, assuming they never come back.");
                 UpdateTimeLeft(2);
+
+                //hide/show the broken axe glass and the axe
+                if(MainManager.axeGrabbed == true)
+                {
+                    // hide the axe and normal glass, show the broken glass
+                    GameObject tempAxe = GameObject.Find("Axe");
+                    tempAxe.renderer.enabled = false;
+
+                    GameObject tempGlass = GameObject.Find("Glass");
+                    tempGlass.renderer.enabled = false;
+
+                    GameObject tempBrokenGlass = GameObject.Find("BrokenGlass");
+                    tempBrokenGlass.renderer.enabled = true;
+
+                }
+                // the axe hasn't been grabbed so show the axe and normal glass, hide the broken glass
+                else
+                {
+                    // show the axe and normal glass, hide the broken glass
+                    GameObject tempAxe = GameObject.Find("Axe");
+                    tempAxe.renderer.enabled = true;
+
+                    GameObject tempGlass = GameObject.Find("Glass");
+                    tempGlass.renderer.enabled = true;
+
+                    GameObject tempBrokenGlass = GameObject.Find("BrokenGlass");
+                    tempBrokenGlass.renderer.enabled = false;
+                }
                 break;
             
             // reaching the end scene
@@ -271,6 +393,148 @@ public class MainManager : MonoBehaviour {
             sunsetOverlay.renderer.enabled = false;
             dawnOverlay.renderer.enabled = false;
         }
+
+
+          
+
+        //-----------------------------------------------------------------------------
+        // block for item handling
+        //-----------------------------------------------------------------------------
+
+        // display text letting the player know that they are trying to use an item with a certain object
+        // if an item is being used (set by the use icon above a usable item)
+        if (MainManager.itemInUse == true)
+        {
+            SetText("Use " + MainManager.itemBeingUsed + " with...");
+        }
+        
+        // make a ray at the mouse's location and check the item that it clicked on
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+
+        // What to do when a certain item is clicked on hitboxes is found
+        // INCLUDE HERE
+        // interactions like saw and tree, or knife and rope, etc.]
+
+        // if we hover over an object
+        if (hit)
+        {
+            // if the left mouse button is clicked, and NOT clicked on the initial use icon or the backpack icons
+            if (hit.collider.gameObject.name != "UseIcon" && hit.collider.gameObject.name != "OpenBackpackIcon" 
+                && hit.collider.gameObject.name != "ClosedBackpackIcon"
+                && Input.GetMouseButtonDown(0))
+            {
+                // if item is still in use
+                if (MainManager.itemInUse == true)
+                {
+                    // if the axe is used on the tree,
+                    // hide the original tree, show the stump, and show the logs
+                    if (MainManager.itemBeingUsed == "Axe")
+                    {
+                        // if one of the trees is clicked on
+                        if (hit.collider.gameObject.name == "Tree1")
+                        {
+                            // hide the tree, show the logs (don't need to show the stump since they were originally
+                            // behind the trees
+                            GameObject tempTree = GameObject.Find("Tree1");
+                            tempTree.renderer.enabled = false;
+                            GameObject tempLog1 = GameObject.Find("Log1_1");
+                            tempLog1.transform.position = new Vector3(tempLog1.transform.position.x, tempLog1.transform.position.y, -2.5f);
+                            GameObject tempLog2 = GameObject.Find("Log1_2");
+                            tempLog2.transform.position = new Vector3(tempLog2.transform.position.x, tempLog2.transform.position.y, -2.5f);
+
+                            // set the bool for the tree being used to hide stuff on other loads
+                            MainManager.tree1Used = true;
+
+                            // display time taken and update time remaining
+                            SetText("That took two hours, whew.");
+                            UpdateTimeLeft(2);
+
+                            // stop using the axe
+                            MainManager.itemInUse = false;
+                            
+
+
+                        }
+                        else if (hit.collider.gameObject.name == "Tree2")
+                        {
+                            // hide the tree, show the logs (don't need to show the stump since they were originally
+                            // behind the trees
+                            GameObject tempTree = GameObject.Find("Tree2");
+                            tempTree.renderer.enabled = false;
+                            GameObject tempLog1 = GameObject.Find("Log2_1");
+                            tempLog1.transform.position = new Vector3(tempLog1.transform.position.x, tempLog1.transform.position.y, -2.4f);
+                            GameObject tempLog2 = GameObject.Find("Log2_2");
+                            tempLog2.transform.position = new Vector3(tempLog2.transform.position.x, tempLog2.transform.position.y, -2.4f);
+
+                            // set the bool for the tree being used to hide stuff on other loads
+                            MainManager.tree2Used = true;
+
+                            // display time taken and update time remaining
+                            SetText("That took two hours, whew.");
+                            UpdateTimeLeft(2);
+
+                            // stop using the axe
+                            MainManager.itemInUse = false;
+
+
+                        }
+                        else if (hit.collider.gameObject.name == "Tree3")
+                        {
+                            // hide the tree, show the logs (don't need to show the stump since they were originally
+                            // behind the trees
+                            GameObject tempTree = GameObject.Find("Tree3");
+                            tempTree.renderer.enabled = false;
+                            GameObject tempLog1 = GameObject.Find("Log3_1");
+                            tempLog1.transform.position = new Vector3(tempLog1.transform.position.x, tempLog1.transform.position.y, -3.5f);
+                            GameObject tempLog2 = GameObject.Find("Log3_2");
+                            tempLog2.transform.position = new Vector3(tempLog2.transform.position.x, tempLog2.transform.position.y, -3.5f);
+
+                            // set the bool for the tree being used to hide stuff on other loads
+                            MainManager.tree3Used = true;
+
+                            // display time taken and update time remaining
+                            SetText("That took two hours, whew.");
+                            UpdateTimeLeft(2);
+
+                            // stop using the axe
+                            MainManager.itemInUse = false;
+
+
+                        }
+                        // show the default message of I can't use that on that
+                        else
+                        {
+                            SetText("I can't use the " + MainManager.itemBeingUsed + " with that.");
+                            // stop using an item
+                            MainManager.itemInUse = false;
+                        }
+
+                    }
+                    // end of axe block
+
+
+                    // add the other items that could be used with here
+                    // like 
+                    //if (MainManager.itemBeingUsed == "Knife")
+                    //{
+                    //}
+
+
+
+                    // defualt to cancel item being used with
+                    //else
+                    //{
+                    //    MainManager.itemInUse = false;
+                    //}
+                }
+
+            }
+
+        }
+        
+
+        
 
 	}
 

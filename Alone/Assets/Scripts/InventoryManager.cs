@@ -103,35 +103,36 @@ public class InventoryManager : MonoBehaviour {
     {
         switch(level)
         {
+
             case 0:
-                lastLevel = "BedroomScene";
+                lastLevel = "IntroScene";
                 break;
             case 1:
-                lastLevel = "KitchenScene";
+                lastLevel = "BedroomScene";
                 break;
             case 2:
-                lastLevel = "LivingRoomScene";
+                lastLevel = "KitchenScene";
                 break;
             case 3:
-                lastLevel = "BasementScene";
+                lastLevel = "LivingRoomScene";
                 break;
             case 4:
-                lastLevel = "HouseFront";
+                lastLevel = "BasementScene";
                 break;
             case 5:
-                lastLevel = "HouseFrontMap";
+                lastLevel = "HouseFront";
                 break;
             case 6:
-                // Do not change last level if map is loaded
+                lastLevel = "HouseFrontMap";
                 break;
             case 7:
-                lastLevel = "ParkScene";
+                // Do not change last level if map is loaded
                 break;
             case 8:
-                lastLevel = "LibraryScene";
+                lastLevel = "ParkScene";
                 break;
             case 9:
-                lastLevel = "IntroScene";
+                lastLevel = "LibraryScene";
                 break;
             case 10:
                 lastLevel = "DockScene";
@@ -141,6 +142,9 @@ public class InventoryManager : MonoBehaviour {
                 break;
             case 12:
                 lastLevel = "StationScene";
+                break;
+            case 13:
+                lastLevel = "EndScene";
                 break;
             default:
                 break;
@@ -264,6 +268,11 @@ public class InventoryManager : MonoBehaviour {
             moveGrid(gridBackground, up);
                 
         }
+        
+        
+
+        
+
         // New attempt below
 
         if (openBackScript.beingUsed == true || closedBackScript.beingUsed == true)

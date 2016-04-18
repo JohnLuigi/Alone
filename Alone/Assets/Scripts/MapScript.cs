@@ -399,7 +399,10 @@ public class MapScript : MonoBehaviour {
             if (Input.GetMouseButtonDown(0))
             {
                 // get the scene to load string to be used in travelcheck
-                if(hit.collider.gameObject.name != "AcceptIcon" && hit.collider.gameObject.name != "CancelIcon" )
+                //if(hit.collider.gameObject.name != "AcceptIcon" && hit.collider.gameObject.name != "CancelIcon" 
+                //    && hit.collider.gameObject.name != "OpenBackpackIcon" && hit.collider.gameObject.name != "ClosedBackpackIcon"
+                //    && hit.collider.gameObject.transform.parent.gameObject.tag != "Cell")
+                if(hit.collider.gameObject.tag == "Destination")
                 {
                     LevelToLoad = hit.collider.gameObject.name;
                     GameObject findLevel = GameObject.Find(LevelToLoad);
