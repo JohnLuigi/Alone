@@ -92,7 +92,7 @@ public class EndManager : MonoBehaviour {
                 {
                     if (MainManager.storedFoodNames == null)
                     {
-                        displayText.text = "In this time, I collected " + 13 + " pounds of food to survive for " + (int)(13 / 6) + " months.";                        
+                        displayText.text = "In this time, I did not collect any food. I don't know how long I'll make it.";                        
                     }
                     else
                     {
@@ -129,12 +129,30 @@ public class EndManager : MonoBehaviour {
                 // block that checks progress of the raft or what exaclty was used to esapce the town
                 else if (textStep == 2)
                 {
-                    displayText.text = "The raft was just barely built in time, and I made it downriver.";
+                    if(MainManager.raftBuilt)
+                    {
+                        displayText.text = "The raft was just barely built in time, and I made it downriver.";
+                    }else
+                    {
+                        displayText.text = "I decided to stay in the town and see what was coming.";
+                    }
 
                 }
                 else if(textStep == 3)
                 {
-                    displayText.text = "With these supplies, I was able to escape.";
+                    if(MainManager.raftBuilt && MainManager.storedFoodNames.Count >= 4)
+                    {
+                        displayText.text = "With these supplies, I was able to escape.";
+                    }
+                    else if (MainManager.raftBuilt && MainManager.storedFoodNames.Count < 4)
+                    {
+                        displayText.text = "I was able to head downriver, but without much food I don't know how long I'll last.";
+
+                    }
+                    else
+                    {
+                        displayText.text = "Something is coming. Time to finally see what was making all that.......";
+                    }
                 }
                 // final message block to determine if you lived or not. Stops the movement upon hitting this block
                 // sets the delay to be half of what the original was, so that the text moves halfway down and then stops

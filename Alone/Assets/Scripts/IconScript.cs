@@ -28,7 +28,7 @@ public class IconScript : MonoBehaviour {
     private float clickedTime = 0.0f, currentTime = 0.0f;
 
     // seconds to show the text
-    public float timeToShow = 1.5f;
+    private float timeToShow = 2.5f;
 
     // string to be used to display text
     public string objectText = "";
@@ -69,6 +69,11 @@ public class IconScript : MonoBehaviour {
 
     void OnLevelWasLoaded(int level)
     {
+        // hide the icons upon a new level load if they wre showing when leaving the previous level
+        if(level >= 0)
+        {
+            iconHandlerScript.beingUsed = false;
+        }
         if(level == 3)
         {
             //tempFood = new List<GameObject>(GameObject.Find("MainManager").GetComponent<MainManager>().storedFood);
@@ -146,8 +151,10 @@ public class IconScript : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             objectPropertiesScript = linkedObject.GetComponent<ObjectProperties>();
-            
+
+            // ----------------------------------------------------------------------------------------------------------
             // if icon is look
+            // ----------------------------------------------------------------------------------------------------------
             if (iconType == 0)
             {
                 // check if the item is a certain type, otherwise do the standard description output            
@@ -159,7 +166,27 @@ public class IconScript : MonoBehaviour {
 
                     //TODO
                     // add different types of handling for one hour or multiple hours for grammar
-                    objectText = "It says I have " + MainManager.days + " days and " + MainManager.hours + " hours left. Weird.";
+                    // show this if the calendar is in the inventory
+                    if(linkedObject.transform.parent.tag == "Cell")
+                    {
+                        string daysText = " days and ";
+                        if(MainManager.days == 1)
+                        {
+                            daysText = " day and ";
+                        }
+                        string hoursText = " hours left. Weird.";
+                        if(MainManager.hours == 1)
+                        {
+                            hoursText = " hour left. Weird.";
+                        }
+                        objectText = "It says I have " + MainManager.days + daysText + MainManager.hours + hoursText;
+                    }
+                    // otherwise show this text
+                    else
+                    {
+                        objectText = "That calendar corresponds with that weird number on my door. I can take it with me.";
+                    }
+                    
                 }
 
                 // output text description stored on object                
@@ -175,7 +202,9 @@ public class IconScript : MonoBehaviour {
                 iconHandlerScript.beingUsed = false;
             }
 
+            // ----------------------------------------------------------------------------------------------------------
             // if icon is use
+            // ----------------------------------------------------------------------------------------------------------
             else if (iconType == 1)
             {
                 // carry out the proper action based ont he object's properties
@@ -240,11 +269,13 @@ public class IconScript : MonoBehaviour {
 
                 iconHandlerScript.beingUsed = false;
             }
-
+            // ----------------------------------------------------------------------------------------------------------
             //if icon is store
+            // ----------------------------------------------------------------------------------------------------------
+
             else if (iconType == 2)
             {
-                // This block is for items that are already in the inventory
+                // This block is for food items that are already in the inventory
                 // handling a food item in the inventory being used and tried to be stored in the living room
                 if (objectPropertiesScript.isFood == true && GameObject.Find("FoodRegion"))
                 {
@@ -262,6 +293,7 @@ public class IconScript : MonoBehaviour {
                     );
 
                     Debug.Log(linkedObject.name + "was added to the list");
+
                     //tempFood.Add(Instantiate(linkedObject) as GameObject);
 
                     //GameObject.Find("MainManager").GetComponent<MainManager>().storedFood.Add(Instantiate(linkedObject) as GameObject);
@@ -272,16 +304,81 @@ public class IconScript : MonoBehaviour {
                     MainManager.storedFoodY.Add(linkedObject.transform.position.y);
                     MainManager.storedFoodZ.Add(linkedObject.transform.position.z);
 
-                    linkedObject.transform.parent = null; // un-parent the food item from the inventory cell
+                    linkedObject.transform.parent = null; // un-parent the food item from the inventory cell                    
+
+                    // set the starting time for the text
+                    clickedTime = Time.time;
+                    // remove the number from the end of the food's name
+                    string tempString = linkedObject.name;
+                    tempString = tempString.Remove(tempString.Length - 1);
+
+                    objectText = "I'll store this " + tempString + " for my journey.";
 
                     iconHandlerScript.beingUsed = false;
+
+
+                    
+
+                    return;
+                }
+                
+                // if the player tries to drop the logs, they have to be in the dock scene where the log storing region is
+                // also make sure that the log being dropped is in the inventory with a Cell parent and not one of the logs on the ground
+                else if(linkedObject.tag == "Log" && GameObject.Find("LogStoreRegion") && linkedObject.transform.parent.tag == "Cell")
+                {
+                    // temporary log name to be used to search for thehidden log of the same name as the log being dropped
+                    string tempLogName = linkedObject.name;
+
+                    // destroy the linked object
+                    Destroy(linkedObject);
+
+                    // add the corresponding log to the stored logs in the MainManager
+                    MainManager.storedLogs.Add(tempLogName);
+
+                    // show the corresponding log that was hidden behind the background
+                    GameObject[] tempHiddenLogs = GameObject.FindGameObjectsWithTag("Log");
+                    foreach(GameObject aLog in tempHiddenLogs)
+                    {
+                        if(aLog.name == tempLogName)
+                        {                         
+                            aLog.transform.position = new Vector3(aLog.transform.position.x, aLog.transform.position.y, -3.5f);
+                        }                        
+                    }         
+                    
+                    // set the starting time for the text
+                    clickedTime = Time.time;
+                    objectText = "I'll put this log here to build something with it later.";
+                    iconHandlerScript.beingUsed = false;
+                    return;
                 }
 
+                // block for items that are lying in the world to be stored
                 else if(objectPropertiesScript.storable == true)
                 {
                     //
                     // TODO
                     //inventoryArray = iconHandler.getComponent<>invManagerScript.getComponent<InventoryManager>()
+
+                    // if trying to store a log, check that the player has grabbed the cart to carry the log, 
+                    // otherwise do not pick it up
+                    if (linkedObject.tag == "Log")
+                    {
+                        // if the player has grabbed the cart and thus expanded their inventory, store the item
+                        if (MainManager.cartGrabbed)
+                        {
+                            // continue the loop to store the log
+                        }
+                        // if the cart was not grabbed, display a message
+                        else
+                        {
+                            // set the starting time for the text
+                            clickedTime = Time.time;
+
+                            objectText = "I could move that log around if I had something to carry it in, like a cart.";
+                            iconHandlerScript.beingUsed = false;
+                            return;
+                        }
+                    }
 
                     for (int i = 0; i < inventoryArray.Length; i++)
                     {
@@ -292,10 +389,10 @@ public class IconScript : MonoBehaviour {
                         {
                             //move the item to the inventory cell (in front of the cell too on hte z-axis
                             linkedObject.transform.position = new Vector3(inventoryArray[i].transform.position.x,
-                                inventoryArray[i].transform.position.y, inventoryArray[i].transform.position.z - 0.5f);
+                                inventoryArray[i].transform.position.y, inventoryArray[i].transform.position.z - 1.0f);
 
                             // rotate the item to match the inventory cell
-                            linkedObject.transform.rotation = inventoryArray[i].transform.rotation;
+                            //linkedObject.transform.rotation = inventoryArray[i].transform.rotation;
 
                             // scale the item to match the inventory cell
 
@@ -322,45 +419,50 @@ public class IconScript : MonoBehaviour {
                             if(linkedObject.name == "Axe")
                             {
                                 MainManager.axeGrabbed = true;
-                            }
-                            
-
-                            //// chunk for adding food items to the storedFood Array
-                            //if(objectPropertiesScript.isFood == true)
-                            //{
-                                
-                            //    // add the food object that you are storing to the list to be checked upon scene loading
-                            //    // search through the temp food array for an open spot, then store the food in that spot
-                            //    //for (int j = 0; j < tempFood.Length; j++)
-                            //    //{
-                            //    //    if (tempFood[j] == null)
-                            //    //    {
-                            //    //        Debug.Log(linkedObject.name + " was added to the storedFood array at position " + j);
-                            //    //        tempFood[j] = Instantiate(linkedObject, linkedObject.transform.position, linkedObject.transform.rotation) as GameObject;
-
-                            //    //        System.Array.Copy(tempFood, iconHandler.GetComponent<IconHandler>().storedFood,tempFood.Length);
-                            //    //        break; // this break takes you out of the current nested for loop
-                            //    //    }
-                            //    //}
-
-                            //    // add the linked object to the list
-                                
-
-                            //    //foreach(GameObject tempObject in tempFood)
-                            //    //{
-                            //    //    if(tempObject == null)
-                            //    //    {
-                            //    //        // add the linked object to the list
-                                        
-                            //    //        break;
-                            //    //    }
-                            //    //}
-                            //}
-                            
-
-
+                            }  
 
                             objectPropertiesScript.stored = true;
+                            iconHandlerScript.beingUsed = false;
+                            // set the starting time for the text
+                            clickedTime = Time.time;
+                            if(MainManager.cartGrabbed)
+                            {
+                                // since the logs have weird names, need to output this exact text.
+                                if(linkedObject.tag == "Log")
+                                {
+                                    objectText = "I put the log in the cart.";
+                                }
+                                else
+                                {
+                                    if(objectPropertiesScript.isFood)
+                                    {
+                                        string tempString = linkedObject.name;
+                                        tempString = tempString.Remove(tempString.Length - 1);
+
+                                        objectText = "I put the " + tempString + " in the cart.";
+                                    }
+                                    else
+                                    {
+                                        objectText = "I put the " + linkedObject.name + " in the cart.";
+
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (objectPropertiesScript.isFood)
+                                {
+                                    string tempString = linkedObject.name;
+                                    tempString = tempString.Remove(tempString.Length - 1);
+
+                                    objectText = "I put the " + tempString + " in my backpack.";
+                                }
+                                else
+                                {
+                                    objectText = "I put the " + linkedObject.name + " in my backpack";
+                                }
+
+                            }
                             iconHandlerScript.beingUsed = false;
                             return;
                         }

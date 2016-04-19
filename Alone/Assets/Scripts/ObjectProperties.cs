@@ -67,14 +67,42 @@ public class ObjectProperties : MonoBehaviour {
             {
                 if (child.name == this.name)
                 {
-                    Debug.Log("destroyed copy");
-                    Destroy(this.gameObject);
+                    
+                    // check that this item is not in the cell itself, but in the world
+                    if(this.gameObject.transform.parent.tag == "Cell")
+                    {                        
+                        // do nothing if the object is in the inventory
+                    }                    
+                    else if(this.gameObject.tag == "Log" && Application.loadedLevel == 10)
+                    {
+                        // do not destroy the log if it is hiding in the dock scene
+                    }
+                    else
+                    {
+                        // destroy the object if it is in the gmae world
+                        Debug.Log("destroyed copy");
+                        Destroy(this.gameObject);
+                    }
+                    
                     return;
                 }
             }
 
         }
 
+        // check if the log was used previously and thus stored in the MainManager
+        // also check if it is loading in the park
+        if(this.gameObject.tag == "Log" && Application.loadedLevel == 8)
+        {
+            // check the stored logs in the MainManager
+            foreach(string tempStr in MainManager.storedLogs)
+            {
+                if(this.gameObject.name == tempStr)
+                {
+                    Destroy(this.gameObject);
+                }
+            }
+        }
 
     }
 	
@@ -85,11 +113,22 @@ public class ObjectProperties : MonoBehaviour {
 	    if(visible == false)
         {
             renderer.enabled = false;
+            // if the object has a polygon collider, disable it (mostly being used for the cabinets
+            if (this.gameObject.GetComponent<PolygonCollider2D>())
+            {
+                this.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+            }
+            
         }
         // else, render the object
         else
         {
             renderer.enabled = true;
+            // if the object has a polygon collider, reenable it (mostly being used for the cabinets
+            if (this.gameObject.GetComponent<PolygonCollider2D>())
+            {
+                this.gameObject.GetComponent<PolygonCollider2D>().enabled = true;
+            }
         }
 
 	}

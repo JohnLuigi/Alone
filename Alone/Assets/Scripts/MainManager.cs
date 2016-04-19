@@ -73,14 +73,23 @@ public class MainManager : MonoBehaviour {
     public static bool tree2Used = false;
     public static bool tree3Used = false;
 
+    // list that will store the names of the logs to show
+    public static List<string> storedLogs;
+
+    // bool to check whether the raft has been built or not
+    public static bool raftBuilt = false;
+
     void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
         //storedFood = new List<GameObject>();
+        // initialize the lists as empty
         storedFoodNames = new List<string>();
         storedFoodX = new List<float>();
         storedFoodY = new List<float>();
         storedFoodZ = new List<float>();
+
+        storedLogs = new List<string>();
     }
 
 	// Use this for initialization
@@ -177,9 +186,9 @@ public class MainManager : MonoBehaviour {
                     GameObject tempTree = GameObject.Find("Tree1");
                     tempTree.renderer.enabled = false;
                     GameObject tempLog1 = GameObject.Find("Log1_1");
-                    tempLog1.transform.position = new Vector3(tempLog1.transform.position.x, tempLog1.transform.position.y, -2.5f);
+                    MoveLog(tempLog1, -2.5f);
                     GameObject tempLog2 = GameObject.Find("Log1_2");
-                    tempLog2.transform.position = new Vector3(tempLog2.transform.position.x, tempLog2.transform.position.y, -2.5f);
+                    MoveLog(tempLog2, -2.5f);
                 }
                 else // if the tree has NOT been used, show the tree, hide the logs
                 {
@@ -187,9 +196,9 @@ public class MainManager : MonoBehaviour {
                     tempTree.renderer.enabled = true;
                     // move hte logs behind the background to hide htem and so they can't be clicked on
                     GameObject tempLog1 = GameObject.Find("Log1_1");
-                    tempLog1.transform.position = new Vector3(tempLog1.transform.position.x, tempLog1.transform.position.y, 1.0f);
+                    MoveLog(tempLog1, 1.0f);
                     GameObject tempLog2 = GameObject.Find("Log1_2");
-                    tempLog2.transform.position = new Vector3(tempLog2.transform.position.x, tempLog2.transform.position.y, 1.0f);
+                    MoveLog(tempLog2, 1.0f);
                 }
                 
                 // tree 2 stuff
@@ -200,18 +209,18 @@ public class MainManager : MonoBehaviour {
                     GameObject tempTree = GameObject.Find("Tree2");
                     tempTree.renderer.enabled = false;
                     GameObject tempLog1 = GameObject.Find("Log2_1");
-                    tempLog1.transform.position = new Vector3(tempLog1.transform.position.x, tempLog1.transform.position.y, -2.4f);
+                    MoveLog(tempLog1, -2.4f);
                     GameObject tempLog2 = GameObject.Find("Log2_2");
-                    tempLog2.transform.position = new Vector3(tempLog2.transform.position.x, tempLog2.transform.position.y, -2.4f);
+                    MoveLog(tempLog2, -2.4f);
                 }
                 else // if the tree has NOT been used, show the tree, hide the logs
                 {
                     GameObject tempTree = GameObject.Find("Tree2");
                     tempTree.renderer.enabled = true;
                     GameObject tempLog1 = GameObject.Find("Log2_1");
-                    tempLog1.transform.position = new Vector3(tempLog1.transform.position.x, tempLog1.transform.position.y, 1.0f);
+                    MoveLog(tempLog1, 1.0f);
                     GameObject tempLog2 = GameObject.Find("Log2_2");
-                    tempLog2.transform.position = new Vector3(tempLog2.transform.position.x, tempLog2.transform.position.y, 1.0f);
+                    MoveLog(tempLog2, 1.0f);
                 }
                 
                 // tree 3 stuff
@@ -223,18 +232,18 @@ public class MainManager : MonoBehaviour {
                     GameObject tempTree = GameObject.Find("Tree3");
                     tempTree.renderer.enabled = false;
                     GameObject tempLog1 = GameObject.Find("Log3_1");
-                    tempLog1.transform.position = new Vector3(tempLog1.transform.position.x, tempLog1.transform.position.y, -3.5f);
+                    MoveLog(tempLog1, -3.5f);                    
                     GameObject tempLog2 = GameObject.Find("Log3_2");
-                    tempLog2.transform.position = new Vector3(tempLog2.transform.position.x, tempLog2.transform.position.y, -3.5f);
+                    MoveLog(tempLog2, -3.5f);
                 }
                 else // if the tree has NOT been used, show the tree, hide the logs
                 {
                     GameObject tempTree = GameObject.Find("Tree3");
                     tempTree.renderer.enabled = true;
                     GameObject tempLog1 = GameObject.Find("Log3_1");
-                    tempLog1.transform.position = new Vector3(tempLog1.transform.position.x, tempLog1.transform.position.y, 1.0f);
+                    MoveLog(tempLog1, 1.0f);
                     GameObject tempLog2 = GameObject.Find("Log3_2");
-                    tempLog2.transform.position = new Vector3(tempLog2.transform.position.x, tempLog2.transform.position.y, 1.0f);
+                    MoveLog(tempLog2, 1.0f);
                 }
 
                 // TODO
@@ -253,6 +262,18 @@ public class MainManager : MonoBehaviour {
                 // maybe check if the raft is ready or not here
                 SetText("Always wanted to go down the river.");
                 UpdateTimeLeft(3); //3
+
+                // check if the raft has been built or not.
+                // if it has, show the raft, else, hide it
+                GameObject raft = GameObject.Find("Raft");
+                if(MainManager.raftBuilt)
+                {                    
+                    raft.transform.position = new Vector3(raft.transform.position.x, raft.transform.position.y, -3.5f);
+                }
+                else
+                {
+                    raft.transform.position = new Vector3(raft.transform.position.x, raft.transform.position.y, 1.0f);
+                }
                 break;
 
             // reaching the market
@@ -572,5 +593,20 @@ public class MainManager : MonoBehaviour {
         }
         
 
+    }
+
+    // method to move the log forward or back
+    // direction of 0 = back
+    // direction of 1 = forward
+    void MoveLog(GameObject temp, float direction)
+    {
+        if (temp.transform.parent.tag == "Cell")
+        {
+            // don't move the object if it is in the inventory
+        }
+        else
+        {            
+            temp.transform.position = new Vector3(temp.transform.position.x, temp.transform.position.y, direction);           
+        }
     }
 }
