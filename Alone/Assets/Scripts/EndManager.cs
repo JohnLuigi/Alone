@@ -67,7 +67,8 @@ public class EndManager : MonoBehaviour {
             if (Time.time > nextUsage)
             {
                 Debug.Log("reached the end of the game");
-                UnityEditor.EditorApplication.isPlaying = false;
+                // debug code here to end the game while running it in the editor
+                //UnityEditor.EditorApplication.isPlaying = false;
                 Application.Quit();
             }
         }

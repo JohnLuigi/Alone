@@ -1,0 +1,372 @@
+Initialize engine version: 4.7.1f1 (68064779abd0)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 660M  (ID=0xfd4)
+    Vendor:   NVIDIA
+    VRAM:     1989 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Owner\Documents\GitHub\Alone\Alone\Alonev0.1_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Owner\Documents\GitHub\Alone\Alone\Alonev0.1_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Owner\Documents\GitHub\Alone\Alone\Alonev0.1_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Owner\Documents\GitHub\Alone\Alone\Alonev0.1_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Owner\Documents\GitHub\Alone\Alone\Alonev0.1_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Owner\Documents\GitHub\Alone\Alone\Alonev0.1_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.048 seconds
+desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: C:\Users\Owner\Documents\GitHub\Alone\Alone\Alonev0.1_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Owner\Documents\GitHub\Alone\Alone\Alonev0.1_Data\Managed\System.dll (this message is harmless)
+UnloadTime: 0.334223 ms
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 375.
+Total: 0.739843 ms (FindLiveObjects: 0.030343 ms CreateObjectMapping: 0.008032 ms MarkObjects: 0.113341 ms  DeleteObjects: 0.022757 ms)
+
+Days left: 3, hours left: 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at MainManager.OnLevelWasLoaded (Int32 level) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Days left: 3, hours left: 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at MainManager.OnLevelWasLoaded (Int32 level) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+UnloadTime: 0.309681 ms
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 23 unused Assets to reduce memory usage. Loaded Objects now: 491.
+Total: 0.704145 ms (FindLiveObjects: 0.016956 ms CreateObjectMapping: 0.009370 ms MarkObjects: 0.141453 ms  DeleteObjects: 0.023203 ms)
+
+Days left: 3, hours left: 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 3, hours left: 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.339578 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 50 unused Assets to reduce memory usage. Loaded Objects now: 535.
+Total: 0.819718 ms (FindLiveObjects: 0.018741 ms CreateObjectMapping: 0.009370 ms MarkObjects: 0.148593 ms  DeleteObjects: 0.132083 ms)
+
+Days left: 3, hours left: 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 3, hours left: 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.377061 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 36 unused Assets to reduce memory usage. Loaded Objects now: 483.
+Total: 0.722887 ms (FindLiveObjects: 0.017402 ms CreateObjectMapping: 0.011601 ms MarkObjects: 0.156179 ms  DeleteObjects: 0.038821 ms)
+
+Days left: 3, hours left: 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 3, hours left: 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.312804 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 63 unused Assets to reduce memory usage. Loaded Objects now: 419.
+Total: 0.739397 ms (FindLiveObjects: 0.014279 ms CreateObjectMapping: 0.009816 ms MarkObjects: 0.148147 ms  DeleteObjects: 0.051762 ms)
+
+Days left: 3, hours left: 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 3, hours left: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.273090 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 43 unused Assets to reduce memory usage. Loaded Objects now: 491.
+Total: 0.746983 ms (FindLiveObjects: 0.016956 ms CreateObjectMapping: 0.011155 ms MarkObjects: 0.152609 ms  DeleteObjects: 0.038375 ms)
+
+Days left: 2, hours left: 24
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 2, hours left: 24
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.305665 ms
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 63 unused Assets to reduce memory usage. Loaded Objects now: 447.
+Total: 0.747429 ms (FindLiveObjects: 0.015171 ms CreateObjectMapping: 0.010263 ms MarkObjects: 0.142792 ms  DeleteObjects: 0.053993 ms)
+
+Days left: 2, hours left: 24
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 2, hours left: 23
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.304772 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 30 unused Assets to reduce memory usage. Loaded Objects now: 531.
+Total: 0.711285 ms (FindLiveObjects: 0.018295 ms CreateObjectMapping: 0.010263 ms MarkObjects: 0.164211 ms  DeleteObjects: 0.038821 ms)
+
+Days left: 2, hours left: 22
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 2, hours left: 22
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.306111 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 63 unused Assets to reduce memory usage. Loaded Objects now: 585.
+Total: 0.789821 ms (FindLiveObjects: 0.024096 ms CreateObjectMapping: 0.011155 ms MarkObjects: 0.157517 ms  DeleteObjects: 0.056670 ms)
+
+Days left: 2, hours left: 22
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 2, hours left: 21
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.377061 ms
+destroyed copy
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+destroyed copy
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+destroyed copy
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+destroyed copy
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+destroyed copy
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 33 unused Assets to reduce memory usage. Loaded Objects now: 531.
+Total: 0.736273 ms (FindLiveObjects: 0.018741 ms CreateObjectMapping: 0.010709 ms MarkObjects: 0.153948 ms  DeleteObjects: 0.033913 ms)
+
+Days left: 2, hours left: 20
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 2, hours left: 20
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Can2was added to the list
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Chips1was added to the list
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Can1was added to the list
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Bananas1was added to the list
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Soda1was added to the list
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.381077 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 50 unused Assets to reduce memory usage. Loaded Objects now: 545.
+Total: 0.859878 ms (FindLiveObjects: 0.019633 ms CreateObjectMapping: 0.011155 ms MarkObjects: 0.176259 ms  DeleteObjects: 0.134760 ms)
+
+Days left: 2, hours left: 20
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 2, hours left: 20
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.393125 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 36 unused Assets to reduce memory usage. Loaded Objects now: 491.
+Total: 0.736720 ms (FindLiveObjects: 0.016510 ms CreateObjectMapping: 0.010263 ms MarkObjects: 0.162426 ms  DeleteObjects: 0.037036 ms)
+
+Days left: 2, hours left: 20
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 2, hours left: 20
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.304326 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 63 unused Assets to reduce memory usage. Loaded Objects now: 415.
+Total: 0.736720 ms (FindLiveObjects: 0.014279 ms CreateObjectMapping: 0.012048 ms MarkObjects: 0.143684 ms  DeleteObjects: 0.053993 ms)
+
+Days left: 2, hours left: 20
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 2, hours left: 19
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.418114 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 415.
+Total: 0.685404 ms (FindLiveObjects: 0.013833 ms CreateObjectMapping: 0.009816 ms MarkObjects: 0.145469 ms  DeleteObjects: 0.003569 ms)
+
+Days left: 2, hours left: 17
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 2, hours left: 16
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.394464 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 415.
+Total: 0.676033 ms (FindLiveObjects: 0.015171 ms CreateObjectMapping: 0.010263 ms MarkObjects: 0.145916 ms  DeleteObjects: 0.003569 ms)
+
+Days left: 2, hours left: 14
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 2, hours left: 13
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.379738 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 415.
+Total: 0.676033 ms (FindLiveObjects: 0.012940 ms CreateObjectMapping: 0.009816 ms MarkObjects: 0.143684 ms  DeleteObjects: 0.003569 ms)
+
+Days left: 2, hours left: 11
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 2, hours left: 10
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.349841 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 23 unused Assets to reduce memory usage. Loaded Objects now: 531.
+Total: 0.710392 ms (FindLiveObjects: 0.017849 ms CreateObjectMapping: 0.012048 ms MarkObjects: 0.166888 ms  DeleteObjects: 0.024096 ms)
+
+Days left: 2, hours left: 9
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 2, hours left: 9
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.310127 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 467.
+Total: 0.734042 ms (FindLiveObjects: 0.019633 ms CreateObjectMapping: 0.011155 ms MarkObjects: 0.149932 ms  DeleteObjects: 0.049977 ms)
+
+Days left: 2, hours left: 9
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 2, hours left: 8
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.404727 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 431.
+Total: 0.671570 ms (FindLiveObjects: 0.013386 ms CreateObjectMapping: 0.010709 ms MarkObjects: 0.145469 ms  DeleteObjects: 0.003569 ms)
+
+Days left: 2, hours left: 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 2, hours left: 5
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.297633 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 30 unused Assets to reduce memory usage. Loaded Objects now: 321.
+Total: 1.336894 ms (FindLiveObjects: 0.013833 ms CreateObjectMapping: 0.012494 ms MarkObjects: 0.160641 ms  DeleteObjects: 0.636319 ms)
+
+Days left: 2, hours left: 4
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 1, hours left: 20
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+UnloadTime: 0.999101 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 321.
+Total: 0.677818 ms (FindLiveObjects: 0.013386 ms CreateObjectMapping: 0.009816 ms MarkObjects: 0.140115 ms  DeleteObjects: 0.003123 ms)
+
+Days left: 2, hours left: 4
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Days left: 1, hours left: 20
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+hit the part where i shorten the delay
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+reached the end of the game
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
