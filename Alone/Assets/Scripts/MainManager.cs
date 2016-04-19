@@ -128,9 +128,9 @@ public class MainManager : MonoBehaviour {
             Debug.Log("Days left: " + MainManager.days + ", hours left: " + MainManager.hours);
 
             // center the overlays on the camera
-            sunsetOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.9f);
-            nightOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.9f);
-            dawnOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.9f);
+            sunsetOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.99f);
+            nightOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.99f);
+            dawnOverlay.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -3.99f);
 
             // hide and text that was to be shown from the previous level
             showingText = false;
@@ -269,6 +269,13 @@ public class MainManager : MonoBehaviour {
                 if(MainManager.raftBuilt)
                 {                    
                     raft.transform.position = new Vector3(raft.transform.position.x, raft.transform.position.y, -3.5f);
+
+                    // hide all the logs
+                    foreach (string logName in MainManager.storedLogs)
+                    {
+                        GameObject tempLog = GameObject.Find(logName);
+                        Destroy(tempLog);
+                    }
                 }
                 else
                 {
@@ -473,6 +480,7 @@ public class MainManager : MonoBehaviour {
 
                             // stop using the axe
                             MainManager.itemInUse = false;
+                            Application.LoadLevel(Application.loadedLevel);
                             
 
 
@@ -497,6 +505,7 @@ public class MainManager : MonoBehaviour {
 
                             // stop using the axe
                             MainManager.itemInUse = false;
+                            Application.LoadLevel(Application.loadedLevel);
 
 
                         }
@@ -520,6 +529,7 @@ public class MainManager : MonoBehaviour {
 
                             // stop using the axe
                             MainManager.itemInUse = false;
+                            Application.LoadLevel(Application.loadedLevel);
 
 
                         }
@@ -550,6 +560,59 @@ public class MainManager : MonoBehaviour {
                     //}
                 }
 
+            }
+
+            // if the build icon is clicked on
+            if (hit.collider.gameObject.name == "BuildIcon" && Input.GetMouseButtonDown(0))
+            {
+                // show text asking if they want to build the raft and how long it will take
+                // (3 hours)
+                SetText("Do you want to build a raft?");
+                // show the cancel and accept icons
+                GameObject acceptIcon = GameObject.Find("AcceptIcon");
+                acceptIcon.transform.position = new Vector3(acceptIcon.transform.position.x, acceptIcon.transform.position.y, -3.9f);
+                GameObject cancelIcon = GameObject.Find("CancelIcon");
+                cancelIcon.transform.position = new Vector3(cancelIcon.transform.position.x, cancelIcon.transform.position.y, -3.9f);
+            }
+
+            //
+            //
+
+            // if the accept icon is clicked
+            if (hit.collider.gameObject.name == "AcceptIcon" && Application.loadedLevel == 10 && Input.GetMouseButtonDown(0))
+            {
+                // if the player clicks the accept icon when the raft has not been built (shows only when the build icon appears)
+                if(MainManager.raftBuilt == false)
+                {
+                    MainManager.raftBuilt = true;
+
+                    // hide the cancel and accept icons
+                    GameObject acceptIcon = GameObject.Find("AcceptIcon");
+                    acceptIcon.transform.position = new Vector3(acceptIcon.transform.position.x, acceptIcon.transform.position.y, 1.0f);
+                    GameObject cancelIcon = GameObject.Find("CancelIcon");
+                    cancelIcon.transform.position = new Vector3(cancelIcon.transform.position.x, cancelIcon.transform.position.y, 1.0f);
+
+                    // update time taken
+                    UpdateTimeLeft(3);
+
+                    // reload the scene
+                    Application.LoadLevel(Application.loadedLevel);
+                }
+                // if clicking the accept icon when the raft has been built, load the final scene
+                else if(MainManager.raftBuilt == true)
+                {
+                    Application.LoadLevel(13);
+                }
+                
+               
+            }
+            else if (hit.collider.gameObject.name == "CancelIcon" && Application.loadedLevel == 10 && Input.GetMouseButtonDown(0))
+            {
+                // hide the cancel and accept icons
+                GameObject acceptIcon = GameObject.Find("AcceptIcon");
+                acceptIcon.transform.position = new Vector3(acceptIcon.transform.position.x, acceptIcon.transform.position.y, 1.0f);
+                GameObject cancelIcon = GameObject.Find("CancelIcon");
+                cancelIcon.transform.position = new Vector3(cancelIcon.transform.position.x, cancelIcon.transform.position.y, 1.0f);
             }
 
         }

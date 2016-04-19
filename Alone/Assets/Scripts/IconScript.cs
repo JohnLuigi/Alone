@@ -267,6 +267,24 @@ public class IconScript : MonoBehaviour {
                     MainManager.itemBeingUsed = linkedObject.name;
                 }
 
+                // raft use block
+                if(linkedObject.name == "Raft")
+                {
+                    // hide the interact icons
+                    iconHandlerScript.beingUsed = false;
+
+                    // set the starting time for the text
+                    clickedTime = Time.time;
+
+                    objectText = "Do you want to ride the raft down the river and away from this place?";
+
+                    // if the raft was used, show the accept and cancel icons
+                    GameObject acceptIcon = GameObject.Find("AcceptIcon");
+                    acceptIcon.transform.position = new Vector3(acceptIcon.transform.position.x, acceptIcon.transform.position.y, -3.9f);
+                    GameObject cancelIcon = GameObject.Find("CancelIcon");
+                    cancelIcon.transform.position = new Vector3(cancelIcon.transform.position.x, cancelIcon.transform.position.y, -3.9f);
+                }
+
                 iconHandlerScript.beingUsed = false;
             }
             // ----------------------------------------------------------------------------------------------------------

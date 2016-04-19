@@ -25,8 +25,10 @@ public class LoadLevelScript : MonoBehaviour {
     private float fadeTime = 1.0f;
     private float timer = 0.0f;
 
-    private bool sceneStarting = true;      // bool used to know if the scene is fading in or not
-    private bool sceneEnding = false;
+    [HideInInspector]
+    public bool sceneStarting = true;      // bool used to know if the scene is fading in or not
+    [HideInInspector]
+    public bool sceneEnding = false;
 
     void Awake()
     {
@@ -207,7 +209,7 @@ public class LoadLevelScript : MonoBehaviour {
         Application.LoadLevel(levelToLoad);
     }
 
-    void FadeToClear()
+    public void FadeToClear()
     {
         // Lerp the color of the texture between itself and transparent.
         faderColor = screenFader.GetComponent<SpriteRenderer>().color;
@@ -234,7 +236,7 @@ public class LoadLevelScript : MonoBehaviour {
     }
 
 
-    void FadeToBlack()
+    public void FadeToBlack()
     {
         // Lerp the color of the texture between itself and black.
         faderColor = screenFader.GetComponent<SpriteRenderer>().color;
