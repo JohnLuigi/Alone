@@ -170,6 +170,47 @@ public class MainManager : MonoBehaviour {
                     UpdateTimeLeft(2);
                 }
 
+                GameObject one = GameObject.Find("One");
+                GameObject two = GameObject.Find("Two");
+
+                GameObject oneGoo = GameObject.Find("OneGoo");
+                GameObject twoGoo = GameObject.Find("TwoGoo");
+                GameObject threeGoo = GameObject.Find("ThreeGoo");
+
+                oneGoo.renderer.enabled = false;
+                twoGoo.renderer.enabled = false;
+                threeGoo.renderer.enabled = false;
+
+                // goo number on door handling
+                if(MainManager.days == 2)
+                {
+                    one.renderer.enabled = false;
+                    two.renderer.enabled = true;
+                }
+                else if (MainManager.days == 1)
+                {
+                    one.renderer.enabled = true;
+                    two.renderer.enabled = true;
+                }
+                else if(MainManager.days == 0)
+                {
+                    one.renderer.enabled = true;
+                    two.renderer.enabled = true;
+
+                    oneGoo.renderer.enabled = true;
+                    twoGoo.renderer.enabled = true;
+                    threeGoo.renderer.enabled = true;
+                    
+
+                    // show all the other goo too when it's down to the final hours
+                }
+                else
+                {
+                    // hide the one and two numbers
+                    one.renderer.enabled = false;
+                    two.renderer.enabled = false;
+                }
+
                 break;
 
             // reaching the park

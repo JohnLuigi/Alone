@@ -152,7 +152,7 @@ public class EndManager : MonoBehaviour {
                     }
                     else
                     {
-                        displayText.text = "Something is coming. Time to finally see what was making all that.......";
+                        displayText.text = "Something is here. Time to finally see what was making a.......";
                     }
                 }
                 // final message block to determine if you lived or not. Stops the movement upon hitting this block
